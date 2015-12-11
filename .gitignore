@@ -1,0 +1,12 @@
+*
+!.gitattributes
+!.gitignore
+!readme.md
+!.gitkeep
+!*.ucf
+!*.vhd
+!*.sch
+!*.gise
+!*.xise
+!*.jhd
+!*/
