@@ -19,7 +19,7 @@
 
   <properties>
     <property xil_pn:name="Project Description" xil_pn:value=""/>
-    <property xil_pn:name="Working Directory" xil_pn:value="/home/aaron/Dokumente/STUDIUM/SEM5/Elektronik3/Digital/Miniprojekt/vhdl-irdecoder"/>
+    <property xil_pn:name="Working Directory" xil_pn:value="."/>
     <property xil_pn:name="Top-Level Source Type" xil_pn:value="Schematic"/>
     <property xil_pn:name="Synthesis Tool" xil_pn:value="XST (VHDL/Verilog)"/>
     <property xil_pn:name="Simulator" xil_pn:value="ISim (VHDL/Verilog)"/>
