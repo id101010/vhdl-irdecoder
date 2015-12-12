@@ -8,25 +8,20 @@
     <netlist>
         <signal name="DATA_IN" />
         <signal name="CLEAR" />
-        <signal name="XLXN_3" />
         <signal name="XLXN_5(15:0)" />
         <signal name="XLXN_5(15)" />
         <signal name="XLXN_8" />
         <signal name="XLXN_9" />
         <signal name="XLXN_10" />
         <signal name="XLXN_11" />
-        <signal name="XLXN_15" />
-        <signal name="XLXN_16" />
         <signal name="SHIFT_OUT" />
         <signal name="ENABLE" />
-        <signal name="XLXN_22" />
-        <signal name="XLXN_23" />
         <signal name="SHIFT_DOWN" />
-        <signal name="DATA_OUT(15:0)" />
-        <signal name="DATA_OUT(19)" />
-        <signal name="DATA_OUT(18)" />
-        <signal name="DATA_OUT(17)" />
-        <signal name="DATA_OUT(16)" />
+        <signal name="DATA_OUT(4:19)" />
+        <signal name="DATA_OUT(0)" />
+        <signal name="DATA_OUT(1)" />
+        <signal name="DATA_OUT(2)" />
+        <signal name="DATA_OUT(3)" />
         <signal name="DATA_OUT(19:0)" />
         <port polarity="Input" name="DATA_IN" />
         <port polarity="Input" name="CLEAR" />
@@ -120,7 +115,7 @@
             <blockpin signalname="ENABLE" name="CE" />
             <blockpin signalname="CLEAR" name="CLR" />
             <blockpin signalname="XLXN_5(15:0)" name="D(15:0)" />
-            <blockpin signalname="DATA_OUT(15:0)" name="Q(15:0)" />
+            <blockpin signalname="DATA_OUT(4:19)" name="Q(15:0)" />
         </block>
         <block symbolname="fd4ce" name="XLXI_20">
             <blockpin signalname="SHIFT_OUT" name="C" />
@@ -130,10 +125,10 @@
             <blockpin signalname="XLXN_9" name="D1" />
             <blockpin signalname="XLXN_10" name="D2" />
             <blockpin signalname="XLXN_11" name="D3" />
-            <blockpin signalname="DATA_OUT(16)" name="Q0" />
-            <blockpin signalname="DATA_OUT(17)" name="Q1" />
-            <blockpin signalname="DATA_OUT(18)" name="Q2" />
-            <blockpin signalname="DATA_OUT(19)" name="Q3" />
+            <blockpin signalname="DATA_OUT(3)" name="Q0" />
+            <blockpin signalname="DATA_OUT(2)" name="Q1" />
+            <blockpin signalname="DATA_OUT(1)" name="Q2" />
+            <blockpin signalname="DATA_OUT(0)" name="Q3" />
         </block>
     </netlist>
     <sheet sheetnum="1" width="3520" height="2720">
@@ -207,30 +202,30 @@
         </branch>
         <iomarker fontsize="28" x="1168" y="1216" name="SHIFT_DOWN" orien="R180" />
         <iomarker fontsize="28" x="2768" y="1072" name="DATA_OUT(19:0)" orien="R0" />
-        <branch name="DATA_OUT(15:0)">
+        <branch name="DATA_OUT(4:19)">
             <attrtext style="alignment:SOFT-BCENTER;fontsize:28;fontname:Arial" attrname="Name" x="2480" y="1088" type="branch" />
             <wire x2="2480" y1="1088" y2="1088" x1="2400" />
             <wire x2="2496" y1="1088" y2="1088" x1="2480" />
             <wire x2="2528" y1="1088" y2="1088" x1="2496" />
         </branch>
-        <branch name="DATA_OUT(19)">
+        <branch name="DATA_OUT(0)">
             <attrtext style="alignment:SOFT-BCENTER;fontsize:28;fontname:Arial" attrname="Name" x="2464" y="1728" type="branch" />
             <wire x2="2464" y1="1728" y2="1728" x1="2400" />
             <wire x2="2496" y1="1728" y2="1728" x1="2464" />
             <wire x2="2528" y1="1728" y2="1728" x1="2496" />
         </branch>
-        <branch name="DATA_OUT(18)">
+        <branch name="DATA_OUT(1)">
             <attrtext style="alignment:SOFT-BCENTER;fontsize:28;fontname:Arial" attrname="Name" x="2464" y="1664" type="branch" />
             <wire x2="2464" y1="1664" y2="1664" x1="2400" />
             <wire x2="2496" y1="1664" y2="1664" x1="2464" />
             <wire x2="2528" y1="1664" y2="1664" x1="2496" />
         </branch>
-        <branch name="DATA_OUT(17)">
+        <branch name="DATA_OUT(2)">
             <attrtext style="alignment:SOFT-BCENTER;fontsize:28;fontname:Arial" attrname="Name" x="2464" y="1600" type="branch" />
             <wire x2="2464" y1="1600" y2="1600" x1="2400" />
             <wire x2="2528" y1="1600" y2="1600" x1="2464" />
         </branch>
-        <branch name="DATA_OUT(16)">
+        <branch name="DATA_OUT(3)">
             <attrtext style="alignment:SOFT-BCENTER;fontsize:28;fontname:Arial" attrname="Name" x="2464" y="1536" type="branch" />
             <wire x2="2464" y1="1536" y2="1536" x1="2400" />
             <wire x2="2496" y1="1536" y2="1536" x1="2464" />
