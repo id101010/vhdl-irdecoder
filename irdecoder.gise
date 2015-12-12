@@ -22,10 +22,62 @@
   <sourceproject xmlns="http://www.xilinx.com/XMLSchema" xil_pn:fileType="FILE_XISE" xil_pn:name="irdecoder.xise"/>
 
   <files xmlns="http://www.xilinx.com/XMLSchema">
+    <file xil_pn:fileType="FILE_LOG" xil_pn:name="fuse.log"/>
+    <file xil_pn:fileType="FILE_DIRECTORY" xil_pn:name="isim"/>
+    <file xil_pn:branch="BehavioralSim" xil_pn:fileType="FILE_CMD" xil_pn:name="isim.cmd"/>
+    <file xil_pn:branch="BehavioralSim" xil_pn:fileType="FILE_LOG" xil_pn:name="isim.log"/>
     <file xil_pn:fileType="FILE_SYMBOL" xil_pn:name="serparbuf.sym" xil_pn:origination="imported"/>
+    <file xil_pn:branch="BehavioralSim" xil_pn:fileType="FILE_VHDL" xil_pn:name="serparbuf.vhf"/>
     <file xil_pn:fileType="FILE_VHDL" xil_pn:name="serparbuf_drc.vhf"/>
+    <file xil_pn:fileType="FILE_XST_PROJECT" xil_pn:name="serparbuf_tb_beh.prj"/>
+    <file xil_pn:branch="BehavioralSim" xil_pn:fileType="FILE_ISIM_EXE" xil_pn:name="serparbuf_tb_isim_beh.exe"/>
+    <file xil_pn:fileType="FILE_ISIM_MISC" xil_pn:name="serparbuf_tb_isim_beh.wdb"/>
+    <file xil_pn:fileType="FILE_XST_PROJECT" xil_pn:name="serparbuf_tb_stx_beh.prj"/>
+    <file xil_pn:branch="BehavioralSim" xil_pn:fileType="FILE_INI" xil_pn:name="xilinxsim.ini"/>
   </files>
 
-  <transforms xmlns="http://www.xilinx.com/XMLSchema"/>
+  <transforms xmlns="http://www.xilinx.com/XMLSchema">
+    <transform xil_pn:end_ts="1449922000" xil_pn:name="TRAN_copyInitialToAbstractSimulation" xil_pn:start_ts="1449922000">
+      <status xil_pn:value="SuccessfullyRun"/>
+      <status xil_pn:value="ReadyToRun"/>
+    </transform>
+    <transform xil_pn:end_ts="1449923245" xil_pn:in_ck="9076594486672151791" xil_pn:name="TRAN_copyAbstractToPostAbstractSimulation" xil_pn:start_ts="1449923245">
+      <status xil_pn:value="SuccessfullyRun"/>
+      <status xil_pn:value="ReadyToRun"/>
+      <outfile xil_pn:name="serparbuf_tb.vhd"/>
+    </transform>
+    <transform xil_pn:end_ts="1449922571" xil_pn:in_ck="855375662964655181" xil_pn:name="TRAN_schematicsToHdlSim" xil_pn:prop_ck="-395894794407401066" xil_pn:start_ts="1449922570">
+      <status xil_pn:value="SuccessfullyRun"/>
+      <status xil_pn:value="ReadyToRun"/>
+      <outfile xil_pn:name="serparbuf.vhf"/>
+    </transform>
+    <transform xil_pn:end_ts="1449923245" xil_pn:in_ck="4929955201075417131" xil_pn:name="TRAN_copyPostAbstractToPreSimulation" xil_pn:start_ts="1449923245">
+      <status xil_pn:value="SuccessfullyRun"/>
+      <status xil_pn:value="ReadyToRun"/>
+      <outfile xil_pn:name="serparbuf.vhf"/>
+      <outfile xil_pn:name="serparbuf_tb.vhd"/>
+    </transform>
+    <transform xil_pn:end_ts="1449923247" xil_pn:in_ck="4929955201075417131" xil_pn:name="TRAN_ISimulateBehavioralModelRunFuse" xil_pn:prop_ck="-3610983922684532339" xil_pn:start_ts="1449923245">
+      <status xil_pn:value="SuccessfullyRun"/>
+      <status xil_pn:value="ReadyToRun"/>
+      <status xil_pn:value="OutOfDateForOutputs"/>
+      <status xil_pn:value="OutputChanged"/>
+      <outfile xil_pn:name="fuse.log"/>
+      <outfile xil_pn:name="isim"/>
+      <outfile xil_pn:name="isim.log"/>
+      <outfile xil_pn:name="serparbuf_tb_beh.prj"/>
+      <outfile xil_pn:name="serparbuf_tb_isim_beh.exe"/>
+      <outfile xil_pn:name="xilinxsim.ini"/>
+    </transform>
+    <transform xil_pn:end_ts="1449923248" xil_pn:in_ck="4116598944441685678" xil_pn:name="TRAN_ISimulateBehavioralModel" xil_pn:prop_ck="796934119741303258" xil_pn:start_ts="1449923247">
+      <status xil_pn:value="SuccessfullyRun"/>
+      <status xil_pn:value="ReadyToRun"/>
+      <status xil_pn:value="OutOfDateForOutputs"/>
+      <status xil_pn:value="OutputChanged"/>
+      <outfile xil_pn:name="isim.cmd"/>
+      <outfile xil_pn:name="isim.log"/>
+      <outfile xil_pn:name="serparbuf_tb_isim_beh.wdb"/>
+    </transform>
+  </transforms>
 
 </generated_project>

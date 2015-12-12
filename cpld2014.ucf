@@ -1,0 +1,96 @@
+NET "clk" LOC = "P22";	# GCK0	32768 Hz
+
+#Created by Constraints Editor (xc2c256-vq100-7) - 2014/06/11
+NET "clk" TNM_NET = clk;
+TIMESPEC TS_clk = PERIOD "clk" 30 us HIGH 50%;
+
+#NET "GCK2" LOC = "P27";	# GCK2	32768 Hz
+
+#NET "PG" 	LOC = "P99";	# GSR
+
+NET "LD8" LOC = "P50";
+NET "LD7" LOC = "P49";
+NET "LD6" LOC = "P46";
+NET "LD5" LOC = "P44";
+NET "LD4" LOC = "P43";
+NET "LD3" LOC = "P42";
+NET "LD2" LOC = "P41";
+NET "LD1" LOC = "P40";
+
+#NET "sw1"  LOC = "P77"  ;
+#NET "sw2"  LOC = "P81"  ;
+#NET "sw3"  LOC = "P85"  ;
+#NET "sw4"  LOC = "P86"  ;
+
+#NET "DIP4"  LOC = "P35"  ;
+#NET "DIP3"  LOC = "P36"  ;
+#NET "DIP2"  LOC = "P37"  ;
+#NET "DIP1"  LOC = "P39"  ;
+
+#NET "IO_8"  LOC = "P87"  ; # P2
+#NET "IO_7"  LOC = "P89"  ;
+#NET "IO_6"  LOC = "P90"  ;
+#NET "IO_5"  LOC = "P91"  ;
+
+#NET "IO_4"  LOC = "P92"  ; # P1
+#NET "IO_3"  LOC = "P93"  ;
+#NET "IO_2"  LOC = "P94"  ;
+#NET "IO_1"  LOC = "P95"  ;
+
+NET "cln1"  LOC = "P61"  ;
+NET "cln2"  LOC = "P72"  ;
+
+NET "DS5_dp"  LOC = "P3"  ;
+NET "DS4_dp"  LOC = "P8"  ;
+NET "DS3_dp"  LOC = "P12" ;
+NET "DS2_dp"  LOC = "P16" ;
+NET "DS1_dp"  LOC = "P29" ;
+
+NET "phase_n"  LOC = "P34" ; # COM
+NET "DS1<0>"  LOC = "P54"  ;
+NET "DS1<1>"  LOC = "P55"  ;
+NET "DS1<2>"  LOC = "P30"  ;
+NET "DS1<3>"  LOC = "P32"  ;
+NET "DS1<4>"  LOC = "P33"  ;
+NET "DS1<5>"  LOC = "P53"  ;
+NET "DS1<6>"  LOC = "P52"  ;
+
+NET "DS2<0>"  LOC = "P59"  ;
+NET "DS2<1>"  LOC = "P60"  ;
+NET "DS2<2>"  LOC = "P17"  ;
+NET "DS2<3>"  LOC = "P18"  ;
+NET "DS2<4>"  LOC = "P19"  ;
+NET "DS2<5>"  LOC = "P58"  ;
+NET "DS2<6>"  LOC = "P56"  ;
+
+NET "DS3<0>"  LOC = "P65"  ;
+NET "DS3<1>"  LOC = "P66"  ;
+NET "DS3<2>"  LOC = "P13"  ;
+NET "DS3<3>"  LOC = "P14"  ;
+NET "DS3<4>"  LOC = "P15"  ;
+NET "DS3<5>"  LOC = "P64"  ;
+NET "DS3<6>"  LOC = "P63"  ;
+
+NET "DS4<0>"  LOC = "P70"  ;
+NET "DS4<1>"  LOC = "P71"  ;
+NET "DS4<2>"  LOC = "P9"   ;
+NET "DS4<3>"  LOC = "P10"  ;
+NET "DS4<4>"  LOC = "P11"  ;
+NET "DS4<5>"  LOC = "P68"  ;
+NET "DS4<6>"  LOC = "P67"  ;
+
+NET "DS5<0>"  LOC = "P76"  ;
+NET "DS5<1>"  LOC = "P78"  ;
+NET "DS5<2>"  LOC = "P4"   ;
+NET "DS5<3>"  LOC = "P6"   ;
+NET "DS5<4>"  LOC = "P7"   ;
+NET "DS5<5>"  LOC = "P74"  ;
+NET "DS5<6>"  LOC = "P73"  ;
+
+NET "DS6<0>"  LOC = "P82"  ;
+NET "DS6<1>"  LOC = "P96"  ;
+NET "DS6<2>"  LOC = "P97"  ;
+NET "DS6<3>"  LOC = "P1"   ;
+NET "DS6<4>"  LOC = "P2"   ;
+NET "DS6<5>"  LOC = "P80"  ;
+NET "DS6<6>"  LOC = "P79"  ;
