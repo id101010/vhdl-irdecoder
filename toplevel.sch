@@ -25,25 +25,15 @@
         <signal name="DS1_dp" />
         <signal name="DS2_dp" />
         <signal name="DS3_dp" />
-        <signal name="XLXN_40" />
-        <signal name="XLXN_41" />
-        <signal name="XLXN_42" />
-        <signal name="XLXN_43" />
-        <signal name="XLXN_44" />
-        <signal name="XLXN_45" />
-        <signal name="XLXN_46" />
-        <signal name="XLXN_47" />
-        <signal name="XLXN_48" />
-        <signal name="XLXN_49" />
-        <signal name="XLXN_50" />
-        <signal name="XLXN_51" />
-        <signal name="XLXN_52" />
         <signal name="XLXN_53" />
         <signal name="DS4_dp" />
         <signal name="DS5_dp" />
         <signal name="XLXN_57" />
         <signal name="XLXN_58" />
         <signal name="clk" />
+        <signal name="XLXN_59" />
+        <signal name="XLXN_60" />
+        <signal name="XLXN_61" />
         <port polarity="Output" name="DS6(6:0)" />
         <port polarity="Output" name="DS5(6:0)" />
         <port polarity="Output" name="DS4(6:0)" />
@@ -121,6 +111,22 @@
             <line x2="64" y1="-192" y2="-208" x1="80" />
             <line x2="64" y1="-208" y2="-208" x1="64" />
             <line x2="64" y1="-208" y2="-208" x1="64" />
+        </blockdef>
+        <blockdef name="pulsemeasure">
+            <timestamp>2016-1-6T23:33:17</timestamp>
+            <rect width="256" x="64" y="-128" height="128" />
+            <line x2="0" y1="-96" y2="-96" x1="64" />
+            <line x2="0" y1="-32" y2="-32" x1="64" />
+            <line x2="384" y1="-96" y2="-96" x1="320" />
+        </blockdef>
+        <blockdef name="irdecoder">
+            <timestamp>2016-1-6T23:34:18</timestamp>
+            <rect width="256" x="64" y="-192" height="192" />
+            <line x2="0" y1="-160" y2="-160" x1="64" />
+            <line x2="0" y1="-32" y2="-32" x1="64" />
+            <line x2="384" y1="-160" y2="-160" x1="320" />
+            <line x2="384" y1="-96" y2="-96" x1="320" />
+            <line x2="384" y1="-32" y2="-32" x1="320" />
         </blockdef>
         <block symbolname="serparbuf" name="XLXI_18">
             <blockpin name="DATA_IN" />
@@ -210,10 +216,21 @@
             <blockpin signalname="XLXN_58" name="CLKIN" />
             <blockpin signalname="XLXN_53" name="CLKDV" />
         </block>
+        <block symbolname="irdecoder" name="XLXI_58">
+            <blockpin signalname="XLXN_59" name="clk" />
+            <blockpin signalname="XLXN_60" name="state" />
+            <blockpin name="data_out" />
+            <blockpin name="framedetect" />
+            <blockpin name="latch_enable" />
+        </block>
+        <block symbolname="pulsemeasure" name="XLXI_57">
+            <blockpin signalname="XLXN_59" name="clk" />
+            <blockpin signalname="XLXN_61" name="data_in_ser" />
+            <blockpin signalname="XLXN_60" name="data_out_ser" />
+        </block>
     </netlist>
     <sheet sheetnum="1" width="5440" height="3520">
-        <instance x="3328" y="1056" name="XLXI_18" orien="R0">
-        </instance>
+        <instance x="3328" y="1056" name="XLXI_18" orien="R0" />
         <instance x="4352" y="1856" name="XLXI_23" orien="R0">
         </instance>
         <instance x="4352" y="1600" name="XLXI_22" orien="R0">
@@ -264,8 +281,7 @@
         <branch name="DATA_OUT(7:4)">
             <attrtext style="alignment:SOFT-BCENTER;fontsize:28;fontname:Arial" attrname="Name" x="4160" y="1040" type="branch" />
             <wire x2="4160" y1="1040" y2="1040" x1="4112" />
-            <wire x2="4293" y1="1040" y2="1040" x1="4160" />
-            <wire x2="4352" y1="1040" y2="1040" x1="4293" />
+            <wire x2="4352" y1="1040" y2="1040" x1="4160" />
         </branch>
         <branch name="DATA_OUT(11:8)">
             <attrtext style="alignment:SOFT-BCENTER;fontsize:28;fontname:Arial" attrname="Name" x="4176" y="1296" type="branch" />
@@ -306,8 +322,7 @@
             <wire x2="4576" y1="2560" y2="2560" x1="4544" />
         </branch>
         <branch name="DS3_dp">
-            <wire x2="4560" y1="2640" y2="2640" x1="4544" />
-            <wire x2="4576" y1="2640" y2="2640" x1="4560" />
+            <wire x2="4576" y1="2640" y2="2640" x1="4544" />
         </branch>
         <iomarker fontsize="28" x="4768" y="752" name="DS6(6:0)" orien="R0" />
         <iomarker fontsize="28" x="4768" y="976" name="DS5(6:0)" orien="R0" />
@@ -325,8 +340,7 @@
         <instance x="4320" y="2832" name="XLXI_52" orien="R0" />
         <branch name="XLXN_53">
             <wire x2="4304" y1="288" y2="288" x1="4176" />
-            <wire x2="4304" y1="288" y2="544" x1="4304" />
-            <wire x2="4304" y1="544" y2="752" x1="4304" />
+            <wire x2="4304" y1="288" y2="752" x1="4304" />
             <wire x2="4352" y1="752" y2="752" x1="4304" />
             <wire x2="4304" y1="752" y2="976" x1="4304" />
             <wire x2="4352" y1="976" y2="976" x1="4304" />
@@ -337,8 +351,6 @@
             <wire x2="4304" y1="1504" y2="1760" x1="4304" />
             <wire x2="4352" y1="1760" y2="1760" x1="4304" />
             <wire x2="4304" y1="1760" y2="2032" x1="4304" />
-            <wire x2="4320" y1="2032" y2="2032" x1="4304" />
-            <wire x2="4352" y1="2032" y2="2032" x1="4320" />
             <wire x2="4304" y1="2032" y2="2240" x1="4304" />
             <wire x2="4320" y1="2240" y2="2240" x1="4304" />
             <wire x2="4304" y1="2240" y2="2320" x1="4304" />
@@ -355,6 +367,7 @@
             <wire x2="4320" y1="2720" y2="2720" x1="4304" />
             <wire x2="4304" y1="2720" y2="2800" x1="4304" />
             <wire x2="4320" y1="2800" y2="2800" x1="4304" />
+            <wire x2="4352" y1="2032" y2="2032" x1="4304" />
         </branch>
         <branch name="DS4_dp">
             <wire x2="4576" y1="2720" y2="2720" x1="4544" />
@@ -367,13 +380,11 @@
         <iomarker fontsize="28" x="4576" y="2640" name="DS3_dp" orien="R0" />
         <instance x="2960" y="480" name="XLXI_54" orien="R0" />
         <branch name="XLXN_57">
-            <wire x2="3360" y1="288" y2="288" x1="3344" />
-            <wire x2="3376" y1="288" y2="288" x1="3360" />
+            <wire x2="3376" y1="288" y2="288" x1="3344" />
         </branch>
         <instance x="3376" y="480" name="XLXI_55" orien="R0" />
         <branch name="XLXN_58">
-            <wire x2="3776" y1="288" y2="288" x1="3760" />
-            <wire x2="3792" y1="288" y2="288" x1="3776" />
+            <wire x2="3792" y1="288" y2="288" x1="3760" />
         </branch>
         <instance x="3792" y="480" name="XLXI_56" orien="R0" />
         <branch name="clk">
@@ -383,5 +394,22 @@
         <text style="fontsize:40;fontname:Arial;textcolor:rgb(0,0,0)" x="4392" y="620">DS6 is the lowest-valued digit on the display</text>
         <text style="fontsize:24;fontname:Arial;textcolor:rgb(0,0,0)" x="4336" y="2176">Connect common (phase_n) and all unused segments (5x decimal point, 2x colon) to the display clock</text>
         <text style="fontsize:40;fontname:Arial;textcolor:rgb(0,0,0)" x="2984" y="460">Divide 32768/400 = 81Hz</text>
+        <text style="fontsize:28;fontname:Arial;textcolor:rgb(255,0,0)" x="3508" y="1104">WTF is this ?!</text>
+        <instance x="1424" y="1200" name="XLXI_58" orien="R0">
+        </instance>
+        <instance x="784" y="1264" name="XLXI_57" orien="R0">
+        </instance>
+        <branch name="XLXN_59">
+            <wire x2="768" y1="944" y2="1168" x1="768" />
+            <wire x2="784" y1="1168" y2="1168" x1="768" />
+            <wire x2="1424" y1="944" y2="944" x1="768" />
+            <wire x2="1424" y1="944" y2="1040" x1="1424" />
+        </branch>
+        <branch name="XLXN_60">
+            <wire x2="1424" y1="1168" y2="1168" x1="1168" />
+        </branch>
+        <branch name="XLXN_61">
+            <wire x2="784" y1="1232" y2="1232" x1="416" />
+        </branch>
     </sheet>
 </drawing>
