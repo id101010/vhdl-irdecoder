@@ -31,9 +31,6 @@
         <signal name="XLXN_57" />
         <signal name="XLXN_58" />
         <signal name="clk" />
-        <signal name="XLXN_59" />
-        <signal name="XLXN_60" />
-        <signal name="XLXN_61" />
         <port polarity="Output" name="DS6(6:0)" />
         <port polarity="Output" name="DS5(6:0)" />
         <port polarity="Output" name="DS4(6:0)" />
@@ -112,15 +109,8 @@
             <line x2="64" y1="-208" y2="-208" x1="64" />
             <line x2="64" y1="-208" y2="-208" x1="64" />
         </blockdef>
-        <blockdef name="pulsemeasure">
-            <timestamp>2016-1-6T23:33:17</timestamp>
-            <rect width="256" x="64" y="-128" height="128" />
-            <line x2="0" y1="-96" y2="-96" x1="64" />
-            <line x2="0" y1="-32" y2="-32" x1="64" />
-            <line x2="384" y1="-96" y2="-96" x1="320" />
-        </blockdef>
-        <blockdef name="irdecoder">
-            <timestamp>2016-1-6T23:34:18</timestamp>
+        <blockdef name="decoder">
+            <timestamp>2016-1-7T14:1:36</timestamp>
             <rect width="256" x="64" y="-192" height="192" />
             <line x2="0" y1="-160" y2="-160" x1="64" />
             <line x2="0" y1="-32" y2="-32" x1="64" />
@@ -216,17 +206,12 @@
             <blockpin signalname="XLXN_58" name="CLKIN" />
             <blockpin signalname="XLXN_53" name="CLKDV" />
         </block>
-        <block symbolname="irdecoder" name="XLXI_58">
-            <blockpin signalname="XLXN_59" name="clk" />
-            <blockpin signalname="XLXN_60" name="state" />
+        <block symbolname="decoder" name="XLXI_63">
+            <blockpin name="clk" />
+            <blockpin name="data_in" />
             <blockpin name="data_out" />
             <blockpin name="framedetect" />
             <blockpin name="latch_enable" />
-        </block>
-        <block symbolname="pulsemeasure" name="XLXI_57">
-            <blockpin signalname="XLXN_59" name="clk" />
-            <blockpin signalname="XLXN_61" name="data_in_ser" />
-            <blockpin signalname="XLXN_60" name="data_out_ser" />
         </block>
     </netlist>
     <sheet sheetnum="1" width="5440" height="3520">
@@ -394,22 +379,7 @@
         <text style="fontsize:40;fontname:Arial;textcolor:rgb(0,0,0)" x="4392" y="620">DS6 is the lowest-valued digit on the display</text>
         <text style="fontsize:24;fontname:Arial;textcolor:rgb(0,0,0)" x="4336" y="2176">Connect common (phase_n) and all unused segments (5x decimal point, 2x colon) to the display clock</text>
         <text style="fontsize:40;fontname:Arial;textcolor:rgb(0,0,0)" x="2984" y="460">Divide 32768/400 = 81Hz</text>
-        <text style="fontsize:28;fontname:Arial;textcolor:rgb(255,0,0)" x="3508" y="1104">WTF is this ?!</text>
-        <instance x="1424" y="1200" name="XLXI_58" orien="R0">
+        <instance x="2368" y="992" name="XLXI_63" orien="R0">
         </instance>
-        <instance x="784" y="1264" name="XLXI_57" orien="R0">
-        </instance>
-        <branch name="XLXN_59">
-            <wire x2="768" y1="944" y2="1168" x1="768" />
-            <wire x2="784" y1="1168" y2="1168" x1="768" />
-            <wire x2="1424" y1="944" y2="944" x1="768" />
-            <wire x2="1424" y1="944" y2="1040" x1="1424" />
-        </branch>
-        <branch name="XLXN_60">
-            <wire x2="1424" y1="1168" y2="1168" x1="1168" />
-        </branch>
-        <branch name="XLXN_61">
-            <wire x2="784" y1="1232" y2="1232" x1="416" />
-        </branch>
     </sheet>
 </drawing>
