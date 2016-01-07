@@ -35,32 +35,42 @@ library ieee;
 use ieee.std_logic_1164.all;
 use ieee.numeric_std.all;
 
+-- entity desing
 entity decoder is
-    Port ( clk          : in  std_logic;
-           data_in      : in  std_logic;
-           data_out     : out  std_logic;
-           framedetect  : out  std_logic;
-           latch_enable : out  std_logic);
+    Port ( clk          : in    std_logic;
+           data_in      : in    std_logic;
+           reset        : in    std_logic;
+           data_out     : out   std_logic;
+           framedetect  : out   std_logic;
+           latch_enable : out   std_logic);
 end decoder;
 
 architecture Behavioral of decoder is
     
-    type states is (S_MEASURE, S_ONE, S_ZERO, S_PAUSE);         -- State types
+    -- Type definitions
+    type states is (S_START, S_ONE, S_ZERO, S_IDLE);            -- State types
     type signals is (ONE, ZERO, PAUSE, START);                  -- Signal types
     
-    signal state_reg, state_next : states;                      -- state register
-    signal curr_detected : signals;                             -- signal detection register
-    signal curr_count, prev_count, pulse_time  : unsigned(16 downto 0) := (others => '0'); -- counting registers
-    signal pulse_detect : std_ulogic := '0';                           -- pulse detection bit
+    -- Signals
+    signal state_reg, state_next        : states;                                   -- state register
+    signal curr_detected                : signals;                                  -- signal detection register
+    signal curr_count, prev_count       : unsigned(16 downto 0) := (others => '0'); -- counting registers 
+    signal pulse_time, bit_counter      : unsigned(16 downto 0) := (others => '0'); -- counting registers
+    signal pulse_detect                 : std_ulogic := '0';                        -- pulse detection bit
     
     -- TODO: calculate exact values using sample rate (may be generic)! 
     -- Assuming micro seconds now.
+    -- Constants
     constant START_COUNT    : natural := 2500;                  -- number of counts for a start 
     constant ONE_COUNT      : natural := 1300;                  -- number of counts for a one
     constant ZERO_COUNT     : natural := 655;                   -- number of counts for a zero
     constant PAUSE_COUNT    : natural := 574;                   -- number of counts for a pause    
     
 begin
+
+    ----------------------------------------------------------------------------------------------------
+    -- Pulse Counter Logic and preprocessing
+    ----------------------------------------------------------------------------------------------------
 
     -- purpose : Pulse counter, increments curr_count every clock cycle. This is the max sampling rate of the module.
     -- inputs  : clk
@@ -92,7 +102,7 @@ begin
     -- inputs  : pulse_detect, pulse_time
     -- outputs : curr_detected
     COMP: process (pulse_detect) is
-    begin  -- process
+    begin                                           -- process
         if(rising_edge(pulse_detect)) then
             if(pulse_time <= PAUSE_COUNT ) then
                 curr_detected <= PAUSE;
@@ -106,15 +116,99 @@ begin
         end if;
     end process COMP; 
  
-    -- purpose : Finite State Machine which decodes the ir message
+    ----------------------------------------------------------------------------------------------------
+    -- Finite State Machine logic
+    ----------------------------------------------------------------------------------------------------
+ 
+    -- purpose: state register
+    -- inputs : clk, reset, state_next
+    -- outputs: state_reg
+    REG: process (clk, reset) is
+    begin                                   -- process start
+        if reset = '0' then                 -- asynchronous reset (active low)
+            state_reg <= S_IDLE;
+        elsif rising_edge(clk) then         -- rising clock edge
+            state_reg <= state_next;
+        elsif (bit_counter >= 20) then                     -- when the bitcounter reaches 20
+            state_reg <= S_IDLE;
+            bit_counter <= 0;
+            frame_detect <= '1';
+        end if;
+    end process REG;
+    
+    -- purpose : Finite State Machine (next state logic) which handles the ir message
     -- inputs  : curr_detected
     -- outputs : data_out
-    FSM: process (pulse_detect) is
-    begin  -- process
-    --
-    -- ToDo
-    --
-    end process FSM; 
- 
+    NSL: process (pulse_detect) is
+    begin                                               -- process
+        
+        state_next <= state_reg;                        -- set next state
+        
+        case state_reg is
+            when S_IDLE =>
+                if(curr_detected == START) then         -- if START signal gets detected
+                    state_next <= S_START;
+                    bit_counter <= '0';
+                end if;
+            when S_START =>
+                if(curr_detected == ONE) then           -- if ONE gets detected
+                    state_next <= S_ONE;
+                    bit_counter <= bit_counter + 1;
+                    latch_enable <= latch_enable xor latch_enable;
+                end if;     
+                if(curr_detected == ZERO) then          -- if ZERO gets detected
+                    state_next <= S_ZERO;
+                    bit_counter <= bit_counter + 1;
+                    latch_enable <= latch_enable xor latch_enable;
+                end if;                   
+            when S_ONE =>
+                if(curr_detected == ZERO) then          -- if ZERO gets detected
+                    state_next <= S_ZERO;
+                    bit_counter <= bit_counter + 1;
+                    latch_enable <= latch_enable xor latch_enable;
+                end if;  
+                if(curr_detected == ONE) then           -- if ONE gets detected
+                    bit_counter <= bit_counter + 1;
+                    latch_enable <= latch_enable xor latch_enable;
+                end if;  
+            when S_ZERO =>
+                if(curr_detected == ONE) then           -- if ONE gets detected
+                    state_next <= S_ONE;
+                    bit_counter <= bit_counter + 1;
+                    latch_enable <= latch_enable xor latch_enable;
+                end if;  
+                if(curr_detected == ZERO) then          -- if ZERO gets detected
+                    bit_counter <= bit_counter + 1;
+                    latch_enable <= latch_enable xor latch_enable;
+                end if;  
+            when others => null;
+        end case;
+    end process NSL; 
+    
+    -- purpose : Finite State Machine (output logic) 
+    -- inputs  : curr_detected
+    -- outputs : data_out
+    OL: process (pulse_detect) is
+    begin                                           -- process
+        case state_reg is
+            when S_IDLE =>                          -- Clear everything in idle state, except frame detect.
+                data_out <= '0';
+                latch_enable <= '0';
+            when S_START =>                         -- Clear everything in start state
+                data_out <= '0';
+                frame_detect <= '0';  
+                latch_enable <= '0';                
+            when S_ONE =>                           -- Set the output
+                data_out <= '1';
+                frame_detect <= '0'; 
+                latch_enable <= '0';                
+            when S_ZERO =>                          -- Reset the output
+                data_out <= '0';
+                frame_detect <= '0';
+                latch_enable <= '0';                
+            when others => null;
+        end case;
+    end process OL; 
+     
 end architecture Behavioral;
 
