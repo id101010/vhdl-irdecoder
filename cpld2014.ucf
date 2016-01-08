@@ -15,15 +15,15 @@ TIMESPEC TS_clk = PERIOD "clk" 30 us HIGH 50%;
 #NET "LD4" LOC = "P43";
 #NET "LD3" LOC = "P42";
 #NET "LD2" LOC = "P41";
-#NET "LD1" LOC = "P40";
+NET "LD1" LOC = "P40";
 
-NET "sw1"  LOC = "P77"  ;
-NET "sw2"  LOC = "P81"  ;
-NET "sw3"  LOC = "P85"  ;
-NET "sw4"  LOC = "P86"  ;
+#NET "sw1"  LOC = "P77"  ;
+#NET "sw2"  LOC = "P81"  ;
+#NET "sw3"  LOC = "P85"  ;
+#NET "sw4"  LOC = "P86"  ;
 
-NET "DIP4"  LOC = "P35"  ;
-NET "DIP3"  LOC = "P36"  ;
+#NET "DIP4"  LOC = "P35"  ;
+#NET "DIP3"  LOC = "P36"  ;
 NET "DIP2"  LOC = "P37"  ;
 NET "DIP1"  LOC = "P39"  ;
 

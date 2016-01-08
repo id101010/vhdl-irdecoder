@@ -3,7 +3,8 @@ use IEEE.STD_LOGIC_1164.ALL;
 
 entity hex2seg is
     Port ( clk : in  STD_LOGIC; -- Clock of the display (30-100Hz?)
-			  hex : in  STD_LOGIC_VECTOR (3 downto 0); -- HEX number you want to display 0-F
+           en  : in STD_LOGIC;
+		   hex : in  STD_LOGIC_VECTOR (3 downto 0); -- HEX number you want to display 0-F
            seg : out  STD_LOGIC_VECTOR (6 downto 0));  -- 7-Segment output, bit0=segment a, .. ,bit 6=segment g. Output is modulated with clock!
 end hex2seg;
 
@@ -36,7 +37,7 @@ begin
 	
 	-- Assign seg (modulated). 
 	-- All segments which must be on, will have the inverse polarity of the clock. The others go with the clock. We can use xor for that.
-	seg <= clockvec xor segments;
+	seg <= clockvec xor segments when en = '1' else clockvec;
 
 end Behavioral;
 
