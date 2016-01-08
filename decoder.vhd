@@ -37,12 +37,18 @@ use ieee.numeric_std.all;
 
 -- entity desing
 entity decoder is
-    Port ( clk          : in    std_logic;
-           data_in      : in    std_logic;
-           reset        : in    std_logic;
-           data_out     : out   std_logic;
-           frame_detect : out   std_logic;
-           latch_enable : out   std_logic);
+    generic (   input_freq: natural := 32768;   -- frequency of clk in hz
+                start_time: natural := 2500;    -- time for the start signal/leader in us
+                one_time: natural := 1300;      -- time for a '1' signal in us
+                zero_time: natural := 655;      -- time for a '0' signal in us
+                pause_time: natural := 574);    -- time for a pause signal in us
+                
+    Port (      clk          : in    std_logic;
+                data_in      : in    std_logic;
+                reset        : in    std_logic;
+                data_out     : out   std_logic;
+                frame_detect : out   std_logic;
+                latch_enable : out   std_logic);
 end decoder;
 
 architecture Behavioral of decoder is
@@ -60,27 +66,28 @@ architecture Behavioral of decoder is
     signal pulse_detect                 : std_ulogic := '0';                        -- pulse detection bit
     signal data_old                     : std_ulogic := '1';                        -- for edge detection on data_in
     
-    -- TODO: calculate exact values using sample rate (may be generic)! 
-    -- Assuming micro seconds now.
     -- Constants
-    constant START_COUNT    : natural := 2500;                  -- number of counts for a start 
-    constant ONE_COUNT      : natural := 1300;                  -- number of counts for a one
-    constant ZERO_COUNT     : natural := 655;                   -- number of counts for a zero
-    constant PAUSE_COUNT    : natural := 574;                   -- number of counts for a pause    
+    constant START_COUNT    : natural := input_freq / (1000000 / start_time); -- number of counts for a start 
+    constant ONE_COUNT      : natural := input_freq / (1000000 / one_time); -- number of counts for a one
+    constant ZERO_COUNT     : natural := input_freq / (1000000 / zero_time); -- number of counts for a zero
+    constant PAUSE_COUNT    : natural := input_freq / (1000000 / pause_time); -- number of counts for a pause    
     
 begin
 
     -- purpose : Pulse measure, measures the period of the input pulse and saves it to pulse_time
     -- type    : sequential (on clk)
-    -- inputs  : clk, data_in
+    -- inputs  : clk, reset, data_in
     -- outputs : pulse_time, pulse_detect
-    PM: process (clk) is
-  
+    PM: process (clk, reset) is
     begin  -- process 
-        if(rising_edge(clk)) then
+        if(reset = '1') then
+            pulse_detect <= '0'; 
+            curr_count <= (others => '0');
+            pulse_time <= (others => '0');   
+        elsif(rising_edge(clk)) then
             if(data_in ='0' and data_old='1') then -- falling edge on data_in
                 -- since the input is low active we start the pulse measurement here
-                curr_count <= (others => '0');              -- save current counting position
+                curr_count <= (others => '0');          -- reset current counter
                 pulse_time <= (others => '0');          -- reset output
                 pulse_detect <= '0';                    -- reset pulse_detect bit
             elsif(data_in ='1' and data_old ='0') then -- rising edge on data_in
@@ -124,7 +131,7 @@ begin
     -- outputs  : state_reg, bit_counter
     REG: process (pulse_detect, reset) is
     begin                                   -- process start
-        if reset = '0' then                 -- asynchronous reset (active low)
+        if reset = '1' then                 -- asynchronous reset (active high)
             state_reg <= S_IDLE;
             bit_counter <= to_unsigned(0,bit_counter'length);
         elsif rising_edge(pulse_detect) then         -- rising clock edge
