@@ -48,16 +48,17 @@ end decoder;
 architecture Behavioral of decoder is
     
     -- Type definitions
-    type states is (S_START, S_ONE, S_ZERO, S_DONE, S_IDLE);            -- State types
+    type states is (S_START, S_ONE, S_ZERO, S_DONE, S_IDLE);    -- State types
     type signals is (ONE, ZERO, PAUSE, START);                  -- Signal types
     
     -- Signals
     signal state_reg, state_next        : states;                                   -- state register
     signal curr_detected                : signals;                                  -- signal detection register
-    signal curr_count, prev_count       : unsigned(15 downto 0) := (others => '0'); -- counting registers 
+    signal curr_count                   : unsigned(15 downto 0) := (others => '0'); -- counting registers 
     signal pulse_time                   : unsigned(15 downto 0) := (others => '0'); -- counting registers
     signal bit_counter, bit_counter_next: unsigned(15 downto 0) := (others => '0'); -- counting registers
     signal pulse_detect                 : std_ulogic := '0';                        -- pulse detection bit
+    signal data_old                     : std_ulogic := '1';                        -- for edge detection on data_in
     
     -- TODO: calculate exact values using sample rate (may be generic)! 
     -- Assuming micro seconds now.
@@ -69,39 +70,33 @@ architecture Behavioral of decoder is
     
 begin
 
-    ----------------------------------------------------------------------------------------------------
-    -- Pulse Counter Logic and preprocessing
-    ----------------------------------------------------------------------------------------------------
-
-    -- purpose : Pulse counter, increments curr_count every clock cycle. This is the max sampling rate of the module.
-    -- type    : sequential
-    -- inputs  : clk
-    -- outputs : curr_count
-    PC: process (clk) is
-    begin -- process
-        if(falling_edge(clk)) then
-            curr_count <= curr_count + 1;
-        end if;
-    end process PC;
-
-    -- purpose : Pulse measure, measures the period of the input pulse using curr_count and prev_count.
-    -- type    : sequential
-    -- inputs  : data_in
+    -- purpose : Pulse measure, measures the period of the input pulse and saves it to pulse_time
+    -- type    : sequential (on clk)
+    -- inputs  : clk, data_in
     -- outputs : pulse_time, pulse_detect
-    PM: process (data_in) is
+    PM: process (clk) is
+  
     begin  -- process 
-        if(falling_edge(data_in)) then              -- since the input is low active a pulse starts with a falling edge
-            prev_count <= curr_count;               -- save current counting position
-            pulse_time <= (others => '0');          -- reset output
-            pulse_detect <= '0';                    -- reset pulse_detect bit
-        elsif(rising_edge(data_in)) then               -- if a rising edge occures, the pulse is over
-            pulse_time <= curr_count - prev_count;  -- calculate the difference and set the pulse_detect bit
-            pulse_detect <= '1';                    -- set the pulse_detect bit
+        if(rising_edge(clk)) then
+            if(data_in ='0' and data_old='1') then -- falling edge on data_in
+                -- since the input is low active we start the pulse measurement here
+                curr_count <= (others => '0');              -- save current counting position
+                pulse_time <= (others => '0');          -- reset output
+                pulse_detect <= '0';                    -- reset pulse_detect bit
+            elsif(data_in ='1' and data_old ='0') then -- rising edge on data_in
+                -- stop pulse mesurement and save counter value
+                pulse_time <= curr_count; -- calculate the difference and set the pulse_detect bit
+                pulse_detect <= '1';                    -- set the pulse_detect bit
+            else -- no edge detected
+                curr_count <= curr_count + 1;
+            end if;
+            data_old <= data_in; -- save data_in state for edge detection
         end if;
+
     end process PM;
 
     -- purpose : comperator, which decides what type of pulse got detected.
-    -- type    : sequential
+    -- type    : sequential (on pulse_detect)
     -- inputs  : pulse_detect, pulse_time
     -- outputs : curr_detected
     COMP: process (pulse_detect) is
