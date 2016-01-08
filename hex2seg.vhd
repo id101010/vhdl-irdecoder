@@ -16,7 +16,7 @@ begin
 	
 	-- Switch on the hex char, and decide which segments should be on
 	with hex select 
-	segments <=  "1111110" when "0000", --Ziffer 0
+	segments <=  "0111111" when "0000", --Ziffer 0
 					 "0000110" when "0001", --Ziffer 1
 					 "1011011" when "0010", --Ziffer 2
 					 "1001111" when "0011", --Ziffer 3
