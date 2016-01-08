@@ -3,6 +3,7 @@
 !.gitignore
 !readme.md
 !.gitkeep
+!*.sym
 !*.ucf
 !*.vhd
 !*.sch
