@@ -32,7 +32,7 @@ NET "LD1" LOC = "P40";
 #NET "IO_6"  LOC = "P90"  ;
 #NET "IO_5"  LOC = "P91"  ;
 
-#NET "IO_4"  LOC = "P92"  ; # P1
+NET "IO_4"  LOC = "P92"  ; # P1
 #NET "IO_3"  LOC = "P93"  ;
 #NET "IO_2"  LOC = "P94"  ;
 #NET "IO_1"  LOC = "P95"  ;
