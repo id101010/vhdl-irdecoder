@@ -63,7 +63,6 @@ architecture Behavioral of decoder is
     signal curr_count                   : unsigned(15 downto 0) := (others => '0'); -- counting registers 
     signal pulse_time                   : unsigned(15 downto 0) := (others => '0'); -- counting registers
     signal bit_counter, bit_counter_next: unsigned(15 downto 0) := (others => '0'); -- counting registers
-    signal pulse_detect                 : std_ulogic := '0';                        -- pulse detection bit
     signal data_old                     : std_ulogic := '1';                        -- for edge detection on data_in
     
     -- Constants
@@ -77,11 +76,10 @@ begin
     -- purpose : Pulse measure, measures the period of the input pulse and saves it to pulse_time
     -- type    : sequential (on clk)
     -- inputs  : clk, reset, data_in
-    -- outputs : pulse_time, pulse_detect
+    -- outputs : pulse_time
     PM: process (clk, reset) is
     begin  -- process 
         if(reset = '1') then
-            pulse_detect <= '0'; 
             curr_count <= (others => '0');
             pulse_time <= (others => '0');   
         elsif(rising_edge(clk)) then
@@ -89,11 +87,9 @@ begin
                 -- since the input is low active we start the pulse measurement here
                 curr_count <= (others => '0');          -- reset current counter
                 pulse_time <= (others => '0');          -- reset output
-                pulse_detect <= '0';                    -- reset pulse_detect bit
             elsif(data_in ='1' and data_old ='0') then -- rising edge on data_in
                 -- stop pulse mesurement and save counter value
-                pulse_time <= curr_count; -- calculate the difference and set the pulse_detect bit
-                pulse_detect <= '1';                    -- set the pulse_detect bit
+                pulse_time <= curr_count; -- calculate the difference
             else -- no edge detected
                 curr_count <= curr_count + 1;
             end if;
@@ -127,7 +123,7 @@ begin
  
     -- purpose  : state register
     -- type     : sequential
-    -- inputs   : pulse_detect, reset, state_next, bit_counter_next
+    -- inputs   : reset, state_next, bit_counter_next
     -- outputs  : state_reg
     REGS: process (clk, reset) is
     begin                                   -- process start
@@ -139,23 +135,10 @@ begin
             bit_counter <= bit_counter_next;
         end if;
     end process REGS;
-    
---    -- purpose  : count register
---    -- type     : sequential
---    -- inputs   : pulse_detect, reset, state_next, bit_counter_next
---    -- outputs  : bit_counter
---    REGC: process (pulse_detect, reset) is
---    begin                                                       -- process start
---        if reset = '1' then                                     -- asynchronous reset (active high)
---            bit_counter <= to_unsigned(0,bit_counter'length);
---        elsif falling_edge(pulse_detect) then                   -- rising clock edge
---            bit_counter <= bit_counter_next;
---        end if;
---    end process REGC;
-    
+   
     -- purpose : Finite State Machine (next state logic) which handles the ir message
     -- type    : combinational
-    -- inputs  : state_reg, pulse_detect, bit_counter, curr_detected
+    -- inputs  : state_reg, bit_counter, curr_detected
     -- outputs : bit_counter_next, state_next
     NSL: process (state_reg, curr_detected, bit_counter) is
     begin                                                   -- process

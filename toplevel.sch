@@ -19,7 +19,6 @@
         <signal name="XLXN_112(19:0)" />
         <signal name="DIP1" />
         <signal name="DIP2" />
-        <signal name="cln1" />
         <signal name="DS6(6:0)" />
         <signal name="DS5(6:0)" />
         <signal name="DS1(6:0)" />
@@ -47,13 +46,14 @@
         <signal name="XLXN_160(3:0)" />
         <signal name="XLXN_161" />
         <signal name="XLXN_162(3:0)" />
+        <signal name="XLXN_163" />
+        <signal name="cln1" />
         <port polarity="Input" name="clk" />
         <port polarity="Output" name="phase_n" />
         <port polarity="Input" name="IO_4" />
         <port polarity="Output" name="LD1" />
         <port polarity="Input" name="DIP1" />
         <port polarity="Input" name="DIP2" />
-        <port polarity="Output" name="cln1" />
         <port polarity="Output" name="DS6(6:0)" />
         <port polarity="Output" name="DS5(6:0)" />
         <port polarity="Output" name="DS1(6:0)" />
@@ -66,6 +66,7 @@
         <port polarity="Output" name="DS3_dp" />
         <port polarity="Output" name="DS4_dp" />
         <port polarity="Output" name="DS5_dp" />
+        <port polarity="Output" name="cln1" />
         <blockdef name="serparbuf">
             <timestamp>2016-1-8T13:57:4</timestamp>
             <rect width="352" x="64" y="-320" height="320" />
@@ -205,7 +206,7 @@
             <blockpin signalname="XLXN_157" name="seg3_en" />
             <blockpin signalname="XLXN_159" name="seg2_en" />
             <blockpin signalname="XLXN_161" name="seg1_en" />
-            <blockpin signalname="cln1" name="dp" />
+            <blockpin signalname="XLXN_163" name="dp" />
             <blockpin signalname="XLXN_152(3:0)" name="seg6(3:0)" />
             <blockpin signalname="XLXN_154(3:0)" name="seg5(3:0)" />
             <blockpin signalname="XLXN_156(3:0)" name="seg4(3:0)" />
@@ -269,6 +270,10 @@
         <block symbolname="buf" name="XLXI_52">
             <blockpin signalname="XLXN_147" name="I" />
             <blockpin signalname="DS5_dp" name="O" />
+        </block>
+        <block symbolname="buf" name="XLXI_82">
+            <blockpin signalname="XLXN_163" name="I" />
+            <blockpin signalname="cln1" name="O" />
         </block>
     </netlist>
     <sheet sheetnum="1" width="5440" height="3520">
@@ -358,10 +363,6 @@
         <iomarker fontsize="28" x="2960" y="1008" name="DIP1" orien="R180" />
         <iomarker fontsize="28" x="2912" y="1056" name="DIP2" orien="R180" />
         <text style="textcolor:rgb(255,0,0)" x="1760" y="1148">LSB is shifted in frist. The serpar buf will automatically reverse the order of the bits so that the LSB is in the correct position afterwards</text>
-        <branch name="cln1">
-            <wire x2="3408" y1="1536" y2="1536" x1="3376" />
-        </branch>
-        <iomarker fontsize="28" x="3408" y="1536" name="cln1" orien="R0" />
         <instance x="4032" y="2256" name="XLXI_24" orien="R0">
         </instance>
         <instance x="4032" y="1200" name="XLXI_20" orien="R0">
@@ -519,5 +520,17 @@
             <wire x2="3552" y1="1504" y2="2160" x1="3552" />
             <wire x2="4032" y1="2160" y2="2160" x1="3552" />
         </branch>
+        <instance x="3104" y="1712" name="XLXI_82" orien="R0" />
+        <branch name="XLXN_163">
+            <wire x2="3040" y1="1600" y2="1680" x1="3040" />
+            <wire x2="3104" y1="1680" y2="1680" x1="3040" />
+            <wire x2="3392" y1="1600" y2="1600" x1="3040" />
+            <wire x2="3392" y1="1536" y2="1536" x1="3376" />
+            <wire x2="3392" y1="1536" y2="1600" x1="3392" />
+        </branch>
+        <branch name="cln1">
+            <wire x2="3360" y1="1680" y2="1680" x1="3328" />
+        </branch>
+        <iomarker fontsize="28" x="3360" y="1680" name="cln1" orien="R0" />
     </sheet>
 </drawing>
