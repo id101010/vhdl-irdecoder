@@ -37,11 +37,11 @@ use ieee.numeric_std.all;
 
 -- entity desing
 entity decoder is
-    generic (   input_freq: natural := 32768;   -- frequency of clk in hz
-                start_time: natural := 2500;    -- time for the start signal/leader in us
-                one_time: natural := 1300;      -- time for a '1' signal in us
-                zero_time: natural := 655;      -- time for a '0' signal in us
-                pause_time: natural := 574);    -- time for a pause signal in us
+    generic (   input_freq  : natural := 32768;   -- frequency of clk in hz
+                start_time  : natural := 2500;    -- time for the start signal/leader in us
+                one_time    : natural := 1300;    -- time for a '1' signal in us
+                zero_time   : natural := 655;     -- time for a '0' signal in us
+                pause_time  : natural := 574);    -- time for a pause signal in us
                 
     Port (      clk          : in    std_logic;
                 data_in      : in    std_logic;
@@ -55,7 +55,7 @@ architecture Behavioral of decoder is
     
     -- Type definitions
     type states is (S_START, S_ONE, S_ZERO, S_DONE, S_IDLE);    -- State types
-    type signals is (ONE, ZERO, PAUSE, START);                  -- Signal types
+    type signals is (ONE, ZERO, PAUSE, START, ERROR);           -- Signal types
     
     -- Signals
     signal state_reg, state_next        : states;                                   -- state register
@@ -103,22 +103,22 @@ begin
     end process PM;
 
     -- purpose : comperator, which decides what type of pulse got detected.
-    -- type    : sequential (on pulse_detect)
-    -- inputs  : pulse_detect, pulse_time
+    -- type    : conditional
+    -- inputs  : pulse_time
     -- outputs : curr_detected
-    COMP: process (pulse_detect) is
+    COMP: process (pulse_time) is
     begin                                           -- process
-        if(rising_edge(pulse_detect)) then
-            if(pulse_time <= PAUSE_COUNT ) then
-                curr_detected <= PAUSE;
-            elsif(pulse_time <= ZERO_COUNT) then
-                curr_detected <= ZERO;
-            elsif(pulse_time <= ONE_COUNT) then
-                curr_detected <= ONE;
-            elsif(pulse_time <= START_COUNT) then
-                curr_detected <= START;
-            end if; 
-        end if;
+        if(pulse_time <= PAUSE_COUNT ) then
+            curr_detected <= PAUSE;
+        elsif(pulse_time <= ZERO_COUNT) then
+            curr_detected <= ZERO;
+        elsif(pulse_time <= ONE_COUNT) then
+            curr_detected <= ONE;
+        elsif(pulse_time <= START_COUNT) then
+            curr_detected <= START;
+        else
+            curr_detected <= ERROR;
+        end if; 
     end process COMP; 
  
     ----------------------------------------------------------------------------------------------------
