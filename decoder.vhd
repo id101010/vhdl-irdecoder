@@ -37,11 +37,11 @@ use ieee.numeric_std.all;
 
 -- entity desing
 entity decoder is
-    generic (   input_freq: natural := 32768;   -- frequency of clk in hz
-                start_time: natural := 2500;    -- time for the start signal/leader in us
-                one_time: natural := 1300;      -- time for a '1' signal in us
-                zero_time: natural := 655;      -- time for a '0' signal in us
-                pause_time: natural := 574);    -- time for a pause signal in us
+    generic (   input_freq  : natural := 32768;   -- frequency of clk in hz
+                start_time  : natural := 2500;    -- time for the start signal/leader in us
+                one_time    : natural := 1300;    -- time for a '1' signal in us
+                zero_time   : natural := 655;     -- time for a '0' signal in us
+                pause_time  : natural := 574);    -- time for a pause signal in us
                 
     Port (      clk          : in    std_logic;
                 data_in      : in    std_logic;
@@ -54,8 +54,8 @@ end decoder;
 architecture Behavioral of decoder is
     
     -- Type definitions
-    type states is (S_START, S_ONE, S_ZERO, S_DONE, S_IDLE);    -- State types
-    type signals is (ONE, ZERO, PAUSE, START);                  -- Signal types
+    type states is (S_START, S_ONE, S_ZERO, S_DONE, S_IDLE, S_PAUSE);   -- State types
+    type signals is (ONE, ZERO, PAUSE, START, ERROR);                   -- Signal types
     
     -- Signals
     signal state_reg, state_next        : states;                                   -- state register
@@ -103,22 +103,22 @@ begin
     end process PM;
 
     -- purpose : comperator, which decides what type of pulse got detected.
-    -- type    : sequential (on pulse_detect)
-    -- inputs  : pulse_detect, pulse_time
+    -- type    : conditional
+    -- inputs  : pulse_time
     -- outputs : curr_detected
-    COMP: process (pulse_detect) is
+    COMP: process (pulse_time) is
     begin                                           -- process
-        if(rising_edge(pulse_detect)) then
-            if(pulse_time <= PAUSE_COUNT ) then
-                curr_detected <= PAUSE;
-            elsif(pulse_time <= ZERO_COUNT) then
-                curr_detected <= ZERO;
-            elsif(pulse_time <= ONE_COUNT) then
-                curr_detected <= ONE;
-            elsif(pulse_time <= START_COUNT) then
-                curr_detected <= START;
-            end if; 
-        end if;
+        if(pulse_time <= PAUSE_COUNT ) then
+            curr_detected <= PAUSE;
+        elsif(pulse_time <= ZERO_COUNT) then
+            curr_detected <= ZERO;
+        elsif(pulse_time <= ONE_COUNT) then
+            curr_detected <= ONE;
+        elsif(pulse_time <= START_COUNT) then
+            curr_detected <= START;
+        else
+            curr_detected <= ERROR;
+        end if; 
     end process COMP; 
  
     ----------------------------------------------------------------------------------------------------
@@ -128,57 +128,73 @@ begin
     -- purpose  : state register
     -- type     : sequential
     -- inputs   : pulse_detect, reset, state_next, bit_counter_next
-    -- outputs  : state_reg, bit_counter
-    REG: process (pulse_detect, reset) is
+    -- outputs  : state_reg
+    REGS: process (clk, reset) is
     begin                                   -- process start
         if reset = '1' then                 -- asynchronous reset (active high)
             state_reg <= S_IDLE;
             bit_counter <= to_unsigned(0,bit_counter'length);
-        elsif rising_edge(pulse_detect) then         -- rising clock edge
+        elsif rising_edge(clk) then         -- rising clock edge
             state_reg <= state_next;
             bit_counter <= bit_counter_next;
         end if;
-    end process REG;
+    end process REGS;
+    
+--    -- purpose  : count register
+--    -- type     : sequential
+--    -- inputs   : pulse_detect, reset, state_next, bit_counter_next
+--    -- outputs  : bit_counter
+--    REGC: process (pulse_detect, reset) is
+--    begin                                                       -- process start
+--        if reset = '1' then                                     -- asynchronous reset (active high)
+--            bit_counter <= to_unsigned(0,bit_counter'length);
+--        elsif falling_edge(pulse_detect) then                   -- rising clock edge
+--            bit_counter <= bit_counter_next;
+--        end if;
+--    end process REGC;
     
     -- purpose : Finite State Machine (next state logic) which handles the ir message
     -- type    : combinational
     -- inputs  : state_reg, pulse_detect, bit_counter, curr_detected
     -- outputs : bit_counter_next, state_next
-    NSL: process (state_reg, pulse_detect, curr_detected, bit_counter) is
-    begin                                               -- process
+    NSL: process (state_reg, curr_detected, bit_counter) is
+    begin                                                   -- process
         
-        state_next <= state_reg;                        -- set next state
+        state_next <= state_reg;                            -- set next state
         bit_counter_next <= bit_counter;
+        
         case state_reg is
             when S_IDLE =>
-                if(curr_detected = START) then         -- if START signal gets detected
+                if(curr_detected = START) then              -- if START signal gets detected
                     state_next <= S_START;
                     bit_counter_next <= to_unsigned(0,bit_counter'length);
                 end if;
+                
             when S_START =>
-                bit_counter_next <= bit_counter + 1;
-                if(curr_detected = ONE) then           -- if ONE gets detected
-                    state_next <= S_ONE;
-                elsif(curr_detected = ZERO) then         -- if ZERO gets detected
-                    state_next <= S_ZERO;
-                end if;                   
-            when S_ONE =>
-                bit_counter_next <= bit_counter + 1;
-                if(bit_counter=18) then
+                if(curr_detected = PAUSE) then                -- if ONE gets detected
+                    state_next <= S_PAUSE;
+                end if; 
+                
+            when S_ONE | S_ZERO =>
+                if(bit_counter=20) then
                     state_next <= S_DONE;
-                elsif(curr_detected = ZERO) then          -- if ZERO gets detected
-                    state_next <= S_ZERO;
+                elsif(curr_detected = PAUSE) then           -- if PAUSE gets detected
+                    state_next <= S_PAUSE;
                 end if;   
-            when S_ZERO =>
-                bit_counter_next <= bit_counter + 1;
-                if(bit_counter=18) then
-                    state_next <= S_DONE;
-                elsif(curr_detected = ONE) then           -- if ONE gets detected
+
+            when S_PAUSE =>
+                if(curr_detected = ONE) then                -- if ONE gets detected
                     state_next <= S_ONE;
+                    bit_counter_next <= bit_counter + 1;
+                elsif(curr_detected = ZERO) then            -- if ONE gets detected
+                    state_next <= S_ZERO;
+                    bit_counter_next <= bit_counter + 1;
                 end if;
+                
             when S_DONE =>
                 state_next <= S_IDLE;
             when others => null;
+            
         end case;
     end process NSL; 
     
@@ -186,7 +202,7 @@ begin
     -- type    : combinational
     -- inputs  : state_reg
     -- outputs : data_out, frame_detect
-    latch_enable <= '1' when pulse_detect = '1' and (state_reg = S_ZERO or state_reg = S_ONE) else '0';
+    latch_enable <= '1' when state_reg = S_ONE or state_reg = S_ZERO else '0';
     frame_detect <= '1' when state_reg = S_DONE else '0';
     data_out <= '1' when state_reg = S_ONE else '0';
 
