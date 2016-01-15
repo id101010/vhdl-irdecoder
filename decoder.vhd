@@ -54,7 +54,7 @@ end decoder;
 architecture Behavioral of decoder is
     
     -- Type definitions
-    type states is (S_START, S_ONE, S_ZERO, S_DONE, S_IDLE, S_AWAIT, S_PAUSE);   -- State types
+    type states is (S_START, S_ONE, S_ZERO, S_DONE, S_IDLE, S_PAUSE);   -- State types
     type signals is (ONE, ZERO, PAUSE, START, ERROR);                   -- Signal types
     
     -- Signals
@@ -145,6 +145,9 @@ begin
         
         state_next <= state_reg;                            -- set next state
         bit_counter_next <= bit_counter;
+        latch_enable <= '0';
+        frame_detect <= '0';
+        data_out <= '0';
         
         case state_reg is
             when S_IDLE =>
@@ -159,12 +162,15 @@ begin
                 end if; 
                 
             when S_ONE | S_ZERO =>
-					 state_next <= S_AWAIT;
-				when S_AWAIT =>
-					 if(bit_counter=20) then
+                if(state_reg = S_ONE) then
+                    data_out <= '1';
+                end if;
+                if(bit_counter=20) then
                     state_next <= S_DONE;
+                    latch_enable <= '1';
                 elsif(curr_detected = PAUSE) then           -- if PAUSE gets detected
                     state_next <= S_PAUSE;
+                    latch_enable <= '1';
                 end if;   
             when S_PAUSE =>
                 if(curr_detected = ONE) then                -- if ONE gets detected
@@ -177,19 +183,11 @@ begin
                 
             when S_DONE =>
                 state_next <= S_IDLE;
+                frame_detect <= '1';
             when others => null;
             
         end case;
     end process NSL; 
-    
-    -- purpose : output logic
-    -- type    : combinational
-    -- inputs  : state_reg
-    -- outputs : data_out, frame_detect
-    latch_enable <= '1' when state_reg = S_ONE or state_reg = S_ZERO else '0';
-    frame_detect <= '1' when state_reg = S_DONE else '0';
-    data_out <= '1' when state_reg = S_ONE else '0';
-
      
 end architecture Behavioral;
 
