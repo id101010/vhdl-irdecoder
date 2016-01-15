@@ -54,7 +54,7 @@ end decoder;
 architecture Behavioral of decoder is
     
     -- Type definitions
-    type states is (S_START, S_ONE, S_ZERO, S_DONE, S_IDLE, S_PAUSE);   -- State types
+    type states is (S_START, S_ONE, S_ZERO, S_DONE, S_IDLE, S_AWAIT, S_PAUSE);   -- State types
     type signals is (ONE, ZERO, PAUSE, START, ERROR);                   -- Signal types
     
     -- Signals
@@ -159,12 +159,13 @@ begin
                 end if; 
                 
             when S_ONE | S_ZERO =>
-                if(bit_counter=20) then
+					 state_next <= S_AWAIT;
+				when S_AWAIT =>
+					 if(bit_counter=20) then
                     state_next <= S_DONE;
                 elsif(curr_detected = PAUSE) then           -- if PAUSE gets detected
                     state_next <= S_PAUSE;
                 end if;   
-
             when S_PAUSE =>
                 if(curr_detected = ONE) then                -- if ONE gets detected
                     state_next <= S_ONE;

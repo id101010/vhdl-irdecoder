@@ -14,21 +14,25 @@
         <signal name="XLXN_9" />
         <signal name="XLXN_10" />
         <signal name="XLXN_11" />
-        <signal name="SHIFT_OUT" />
-        <signal name="ENABLE" />
-        <signal name="SHIFT_DOWN" />
         <signal name="DATA_OUT(4:19)" />
         <signal name="DATA_OUT(0)" />
         <signal name="DATA_OUT(1)" />
         <signal name="DATA_OUT(2)" />
         <signal name="DATA_OUT(3)" />
         <signal name="DATA_OUT(19:0)" />
+        <signal name="XLXN_13" />
+        <signal name="XLXN_17" />
+        <signal name="CLK" />
+        <signal name="XLXN_19" />
+        <signal name="XLXN_21" />
+        <signal name="SHIFT_DOWN" />
+        <signal name="SHIFT_OUT" />
         <port polarity="Input" name="DATA_IN" />
         <port polarity="Input" name="CLEAR" />
-        <port polarity="Input" name="SHIFT_OUT" />
-        <port polarity="Input" name="ENABLE" />
-        <port polarity="Input" name="SHIFT_DOWN" />
         <port polarity="Output" name="DATA_OUT(19:0)" />
+        <port polarity="Input" name="CLK" />
+        <port polarity="Input" name="SHIFT_DOWN" />
+        <port polarity="Input" name="SHIFT_OUT" />
         <blockdef name="sr16ce">
             <timestamp>2000-1-1T10:10:10</timestamp>
             <line x2="320" y1="-256" y2="-256" x1="384" />
@@ -94,15 +98,15 @@
             <line x2="64" y1="-128" y2="-128" x1="0" />
         </blockdef>
         <block symbolname="sr16ce" name="XLXI_16">
-            <blockpin signalname="SHIFT_DOWN" name="C" />
-            <blockpin signalname="ENABLE" name="CE" />
+            <blockpin signalname="CLK" name="C" />
+            <blockpin signalname="SHIFT_DOWN" name="CE" />
             <blockpin signalname="CLEAR" name="CLR" />
             <blockpin signalname="DATA_IN" name="SLI" />
             <blockpin signalname="XLXN_5(15:0)" name="Q(15:0)" />
         </block>
         <block symbolname="sr4ce" name="XLXI_17">
-            <blockpin signalname="SHIFT_DOWN" name="C" />
-            <blockpin signalname="ENABLE" name="CE" />
+            <blockpin signalname="CLK" name="C" />
+            <blockpin signalname="SHIFT_DOWN" name="CE" />
             <blockpin signalname="CLEAR" name="CLR" />
             <blockpin signalname="XLXN_5(15)" name="SLI" />
             <blockpin signalname="XLXN_8" name="Q0" />
@@ -111,15 +115,15 @@
             <blockpin signalname="XLXN_11" name="Q3" />
         </block>
         <block symbolname="fd16ce" name="XLXI_19">
-            <blockpin signalname="SHIFT_OUT" name="C" />
-            <blockpin signalname="ENABLE" name="CE" />
+            <blockpin signalname="CLK" name="C" />
+            <blockpin signalname="SHIFT_OUT" name="CE" />
             <blockpin signalname="CLEAR" name="CLR" />
             <blockpin signalname="XLXN_5(15:0)" name="D(15:0)" />
             <blockpin signalname="DATA_OUT(4:19)" name="Q(15:0)" />
         </block>
         <block symbolname="fd4ce" name="XLXI_20">
-            <blockpin signalname="SHIFT_OUT" name="C" />
-            <blockpin signalname="ENABLE" name="CE" />
+            <blockpin signalname="CLK" name="C" />
+            <blockpin signalname="SHIFT_OUT" name="CE" />
             <blockpin signalname="CLEAR" name="CLR" />
             <blockpin signalname="XLXN_8" name="D0" />
             <blockpin signalname="XLXN_9" name="D1" />
@@ -172,53 +176,23 @@
         </branch>
         <instance x="1376" y="1344" name="XLXI_16" orien="R0" />
         <instance x="2016" y="1984" name="XLXI_20" orien="R0" />
-        <branch name="SHIFT_OUT">
-            <wire x2="1968" y1="1856" y2="1856" x1="1200" />
-            <wire x2="2016" y1="1856" y2="1856" x1="1968" />
-            <wire x2="2016" y1="1216" y2="1216" x1="1968" />
-            <wire x2="1968" y1="1216" y2="1856" x1="1968" />
-        </branch>
         <iomarker fontsize="28" x="1152" y="1312" name="CLEAR" orien="R180" />
         <iomarker fontsize="28" x="1184" y="1024" name="DATA_IN" orien="R180" />
-        <iomarker fontsize="28" x="1168" y="1360" name="ENABLE" orien="R180" />
-        <iomarker fontsize="28" x="1200" y="1856" name="SHIFT_OUT" orien="R180" />
-        <branch name="ENABLE">
-            <wire x2="1328" y1="1360" y2="1360" x1="1168" />
-            <wire x2="1328" y1="1360" y2="1664" x1="1328" />
-            <wire x2="1376" y1="1664" y2="1664" x1="1328" />
-            <wire x2="1936" y1="1360" y2="1360" x1="1328" />
-            <wire x2="1936" y1="1360" y2="1792" x1="1936" />
-            <wire x2="2016" y1="1792" y2="1792" x1="1936" />
-            <wire x2="1328" y1="1152" y2="1360" x1="1328" />
-            <wire x2="1376" y1="1152" y2="1152" x1="1328" />
-            <wire x2="2016" y1="1152" y2="1152" x1="1936" />
-            <wire x2="1936" y1="1152" y2="1360" x1="1936" />
-        </branch>
-        <branch name="SHIFT_DOWN">
-            <wire x2="1280" y1="1216" y2="1216" x1="1168" />
-            <wire x2="1280" y1="1216" y2="1728" x1="1280" />
-            <wire x2="1376" y1="1728" y2="1728" x1="1280" />
-            <wire x2="1376" y1="1216" y2="1216" x1="1280" />
-        </branch>
-        <iomarker fontsize="28" x="1168" y="1216" name="SHIFT_DOWN" orien="R180" />
         <iomarker fontsize="28" x="2768" y="1072" name="DATA_OUT(19:0)" orien="R0" />
         <branch name="DATA_OUT(4:19)">
             <attrtext style="alignment:SOFT-BCENTER;fontsize:28;fontname:Arial" attrname="Name" x="2480" y="1088" type="branch" />
             <wire x2="2480" y1="1088" y2="1088" x1="2400" />
-            <wire x2="2496" y1="1088" y2="1088" x1="2480" />
-            <wire x2="2528" y1="1088" y2="1088" x1="2496" />
+            <wire x2="2528" y1="1088" y2="1088" x1="2480" />
         </branch>
         <branch name="DATA_OUT(0)">
             <attrtext style="alignment:SOFT-BCENTER;fontsize:28;fontname:Arial" attrname="Name" x="2464" y="1728" type="branch" />
             <wire x2="2464" y1="1728" y2="1728" x1="2400" />
-            <wire x2="2496" y1="1728" y2="1728" x1="2464" />
-            <wire x2="2528" y1="1728" y2="1728" x1="2496" />
+            <wire x2="2528" y1="1728" y2="1728" x1="2464" />
         </branch>
         <branch name="DATA_OUT(1)">
             <attrtext style="alignment:SOFT-BCENTER;fontsize:28;fontname:Arial" attrname="Name" x="2464" y="1664" type="branch" />
             <wire x2="2464" y1="1664" y2="1664" x1="2400" />
-            <wire x2="2496" y1="1664" y2="1664" x1="2464" />
-            <wire x2="2528" y1="1664" y2="1664" x1="2496" />
+            <wire x2="2528" y1="1664" y2="1664" x1="2464" />
         </branch>
         <branch name="DATA_OUT(2)">
             <attrtext style="alignment:SOFT-BCENTER;fontsize:28;fontname:Arial" attrname="Name" x="2464" y="1600" type="branch" />
@@ -228,8 +202,7 @@
         <branch name="DATA_OUT(3)">
             <attrtext style="alignment:SOFT-BCENTER;fontsize:28;fontname:Arial" attrname="Name" x="2464" y="1536" type="branch" />
             <wire x2="2464" y1="1536" y2="1536" x1="2400" />
-            <wire x2="2496" y1="1536" y2="1536" x1="2464" />
-            <wire x2="2528" y1="1536" y2="1536" x1="2496" />
+            <wire x2="2528" y1="1536" y2="1536" x1="2464" />
         </branch>
         <branch name="DATA_OUT(19:0)">
             <wire x2="2768" y1="1072" y2="1072" x1="2624" />
@@ -244,5 +217,33 @@
         <bustap x2="2528" y1="1600" y2="1600" x1="2624" />
         <bustap x2="2528" y1="1536" y2="1536" x1="2624" />
         <bustap x2="2528" y1="1088" y2="1088" x1="2624" />
+        <branch name="CLK">
+            <wire x2="1328" y1="1216" y2="1216" x1="1152" />
+            <wire x2="1328" y1="1216" y2="1360" x1="1328" />
+            <wire x2="1920" y1="1360" y2="1360" x1="1328" />
+            <wire x2="1328" y1="1360" y2="1728" x1="1328" />
+            <wire x2="1376" y1="1728" y2="1728" x1="1328" />
+            <wire x2="1328" y1="1728" y2="1856" x1="1328" />
+            <wire x2="2016" y1="1856" y2="1856" x1="1328" />
+            <wire x2="1376" y1="1216" y2="1216" x1="1328" />
+            <wire x2="1920" y1="1216" y2="1360" x1="1920" />
+            <wire x2="2016" y1="1216" y2="1216" x1="1920" />
+        </branch>
+        <iomarker fontsize="28" x="1152" y="1216" name="CLK" orien="R180" />
+        <branch name="SHIFT_DOWN">
+            <wire x2="1360" y1="1152" y2="1152" x1="1200" />
+            <wire x2="1376" y1="1152" y2="1152" x1="1360" />
+            <wire x2="1360" y1="1152" y2="1664" x1="1360" />
+            <wire x2="1376" y1="1664" y2="1664" x1="1360" />
+        </branch>
+        <iomarker fontsize="28" x="1200" y="1152" name="SHIFT_DOWN" orien="R180" />
+        <branch name="SHIFT_OUT">
+            <wire x2="1968" y1="2048" y2="2048" x1="1168" />
+            <wire x2="2016" y1="1152" y2="1152" x1="1968" />
+            <wire x2="1968" y1="1152" y2="1792" x1="1968" />
+            <wire x2="2016" y1="1792" y2="1792" x1="1968" />
+            <wire x2="1968" y1="1792" y2="2048" x1="1968" />
+        </branch>
+        <iomarker fontsize="28" x="1168" y="2048" name="SHIFT_OUT" orien="R180" />
     </sheet>
 </drawing>
