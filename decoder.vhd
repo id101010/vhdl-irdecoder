@@ -104,13 +104,13 @@ begin
     -- outputs : curr_detected
     COMP: process (pulse_time) is
     begin                                           -- process
-        if(pulse_time <= PAUSE_COUNT ) then
+        if((PAUSE_COUNT - 1) <= pulse_time or pulse_time <= (PAUSE_COUNT + 1)) then
             curr_detected <= PAUSE;
-        elsif(pulse_time <= ZERO_COUNT) then
+        elsif((ZERO_COUNT - 1) <= pulse_time or pulse_time <= (ZERO_COUNT + 1)) then
             curr_detected <= ZERO;
-        elsif(pulse_time <= ONE_COUNT) then
+        elsif((ONE_COUNT - 1) <= pulse_time or pulse_time <= (ONE_COUNT + 1)) then
             curr_detected <= ONE;
-        elsif(pulse_time <= START_COUNT) then
+        elsif((START_COUNT - 1) <= pulse_time or pulse_time <= (START_COUNT + 1)) then
             curr_detected <= START;
         else
             curr_detected <= ERROR;
@@ -149,44 +149,47 @@ begin
         frame_detect <= '0';
         data_out <= '0';
         
-        case state_reg is
-            when S_IDLE =>
-                if(curr_detected = START) then              -- if START signal gets detected
-                    state_next <= S_START;
-                    bit_counter_next <= to_unsigned(0,bit_counter'length);
-                end if;
-                
-            when S_START =>
-                if(curr_detected = PAUSE) then                -- if ONE gets detected
-                    state_next <= S_PAUSE;
-                end if; 
-                
-            when S_ONE | S_ZERO =>
-                if(state_reg = S_ONE) then
-                    data_out <= '1';
-                end if;
-                if(bit_counter=20) then
-                    state_next <= S_DONE;
-                    latch_enable <= '1';
-                elsif(curr_detected = PAUSE) then           -- if PAUSE gets detected
-                    state_next <= S_PAUSE;
-                    latch_enable <= '1';
-                end if;   
-            when S_PAUSE =>
-                if(curr_detected = ONE) then                -- if ONE gets detected
-                    state_next <= S_ONE;
-                    bit_counter_next <= bit_counter + 1;
-                elsif(curr_detected = ZERO) then            -- if ONE gets detected
-                    state_next <= S_ZERO;
-                    bit_counter_next <= bit_counter + 1;
-                end if;
-                
-            when S_DONE =>
-                state_next <= S_IDLE;
-                frame_detect <= '1';
-            when others => null;
-            
-        end case;
+		  --if(curr_detected = ERROR) then
+			--	state_next <= S_IDLE;
+		  --else 
+			  case state_reg is
+					when S_IDLE =>
+						 if(curr_detected = START) then              -- if START signal gets detected
+							  state_next <= S_START;
+							  bit_counter_next <= to_unsigned(0,bit_counter'length);
+						 end if;
+						 
+					when S_START =>
+						 if(curr_detected = PAUSE) then                -- if ONE gets detected
+							  state_next <= S_PAUSE;
+						 end if; 
+						 
+					when S_ONE | S_ZERO =>
+						 if(state_reg = S_ONE) then
+							  data_out <= '1';
+						 end if;
+						 if(bit_counter=20) then
+							  state_next <= S_DONE;
+							  latch_enable <= '1';
+						 elsif(curr_detected = PAUSE) then           -- if PAUSE gets detected
+							  state_next <= S_PAUSE;
+							  latch_enable <= '1';
+						 end if;   
+					when S_PAUSE =>
+						 if(curr_detected = ONE) then                -- if ONE gets detected
+							  state_next <= S_ONE;
+							  bit_counter_next <= bit_counter + 1;
+						 elsif(curr_detected = ZERO) then            -- if ONE gets detected
+							  state_next <= S_ZERO;
+							  bit_counter_next <= bit_counter + 1;
+						 end if;
+						 
+					when S_DONE =>
+						 state_next <= S_IDLE;
+						 frame_detect <= '1';
+					when others => null;	
+			  end case;
+        --end if;
     end process NSL; 
      
 end architecture Behavioral;
