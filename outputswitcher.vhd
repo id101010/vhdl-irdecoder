@@ -19,15 +19,7 @@
 ----------------------------------------------------------------------------------
 library IEEE;
 use IEEE.STD_LOGIC_1164.ALL;
-
--- Uncomment the following library declaration if using
--- arithmetic functions with Signed or Unsigned values
 use IEEE.NUMERIC_STD.ALL;
-
--- Uncomment the following library declaration if instantiating
--- any Xilinx primitives in this code.
---library UNISIM;
---use UNISIM.VComponents.all;
 
 entity outputswitcher is
     Port ( sel_raw : in  STD_LOGIC;
@@ -64,21 +56,20 @@ begin
                      "00000111" when "00001001110100101101", -- 7:  Convergence Down
                      "00001000" when "00001001110100101100", -- 8:  Convergence Up
                      "00001001" when "00001001110100010001", -- 9:  Tilt left Down
-					 "00001010" when "00001001110100010000", -- 10: Tilt right Down
-                     "00001011" when "00001001110100011001", -- 11: Contrast Down
-                     "00001100" when "00001001110100011000", -- 12: Contrast Up
-                     "00001101" when "00001001110100001101", -- 13: Horizontal Left
-                     "00001110" when "00001001110100001100", -- 14: Horizontal Right
-                     "00001111" when "00001001110100100111", -- 15: With Left
-                     "00010000" when "00001001110100100110", -- 16: With Right
-                     "00010001" when "00001001110100101011", -- 17: Convergence Left
-					 "00010010" when "00001001110100101010", -- 18: Convergence Right
-                     "00010011" when "00001001110100111000", -- 19: Size Down
-                     "00010100" when "00001001110100110111", -- 20: Size Up
+					 "00010000" when "00001001110100010000", -- 10: Tilt right Down
+                     "00010001" when "00001001110100011001", -- 11: Contrast Down
+                     "00010010" when "00001001110100011000", -- 12: Contrast Up
+                     "00010011" when "00001001110100001101", -- 13: Horizontal Left
+                     "00010100" when "00001001110100001100", -- 14: Horizontal Right
+                     "00010101" when "00001001110100100111", -- 15: With Left
+                     "00010110" when "00001001110100100110", -- 16: With Right
+                     "00010111" when "00001001110100101011", -- 17: Convergence Left
+					 "00011000" when "00001001110100101010", -- 18: Convergence Right
+                     "00011001" when "00001001110100111000", -- 19: Size Down
+                     "00100000" when "00001001110100110111", -- 20: Size Up
 					 "11101110" when others; -- output EE-hex to mark error
-    decoded_e <= resize(decoded mod 16,4);
-    decoded_z <= resize(decoded /16,4);
-
+    decoded_e <= decoded(3 downto 0); --one's digit
+    decoded_z <= decoded(7 downto 4); --ten's digit
 
 
     -- Segments 6 (lowest digit) to Segment 3 will always show the raw value, as long as sel_raw = 1
@@ -99,7 +90,7 @@ begin
             std_logic_vector(decoded_e);  -- shows the lowest digit of the decoded message, if sel_decoded is active
     seg2_en <= '1' when sel_raw='1' or sel_decoded='1' else '0';  -- only active when at least one of the two modes is selected  
             
-    -- Segment 1 (highest digit of display) will always show        
+    -- Segment 1 (highest digit of display) will always show the ten's part of the decoded message     
     seg1 <= std_logic_vector(decoded_z) when sel_decoded = '1' else (others => '0');
     seg1_en <= sel_decoded;
     
