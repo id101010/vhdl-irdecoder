@@ -1,0 +1,77 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<wave_config>
+   <wave_state>
+   </wave_state>
+   <db_ref_list>
+      <db_ref path="/home/timo/vhdl-irdecoder/decoder_tb_isim_beh.wdb" id="1" type="auto">
+         <top_modules>
+            <top_module name="decoder_tb" />
+            <top_module name="numeric_std" />
+            <top_module name="std_logic_1164" />
+         </top_modules>
+      </db_ref>
+   </db_ref_list>
+   <WVObjectSize size="15" />
+   <wvobject fp_name="/decoder_tb/uut/clk" type="logic" db_ref_id="1">
+      <obj_property name="ElementShortName">clk</obj_property>
+      <obj_property name="ObjectShortName">clk</obj_property>
+   </wvobject>
+   <wvobject fp_name="/decoder_tb/uut/reset" type="logic" db_ref_id="1">
+      <obj_property name="ElementShortName">reset</obj_property>
+      <obj_property name="ObjectShortName">reset</obj_property>
+   </wvobject>
+   <wvobject fp_name="/decoder_tb/uut/data_in" type="logic" db_ref_id="1">
+      <obj_property name="ElementShortName">data_in</obj_property>
+      <obj_property name="ObjectShortName">data_in</obj_property>
+   </wvobject>
+   <wvobject fp_name="/decoder_tb/data" type="array" db_ref_id="1">
+      <obj_property name="ElementShortName">data[19:0]</obj_property>
+      <obj_property name="ObjectShortName">data[19:0]</obj_property>
+   </wvobject>
+   <wvobject fp_name="/decoder_tb/uut/data_out" type="logic" db_ref_id="1">
+      <obj_property name="ElementShortName">data_out</obj_property>
+      <obj_property name="ObjectShortName">data_out</obj_property>
+   </wvobject>
+   <wvobject fp_name="/decoder_tb/uut/frame_detect" type="logic" db_ref_id="1">
+      <obj_property name="ElementShortName">frame_detect</obj_property>
+      <obj_property name="ObjectShortName">frame_detect</obj_property>
+   </wvobject>
+   <wvobject fp_name="/decoder_tb/uut/latch_enable" type="logic" db_ref_id="1">
+      <obj_property name="ElementShortName">latch_enable</obj_property>
+      <obj_property name="ObjectShortName">latch_enable</obj_property>
+   </wvobject>
+   <wvobject fp_name="/decoder_tb/uut/state_reg" type="other" db_ref_id="1">
+      <obj_property name="ElementShortName">state_reg</obj_property>
+      <obj_property name="ObjectShortName">state_reg</obj_property>
+   </wvobject>
+   <wvobject fp_name="/decoder_tb/uut/state_next" type="other" db_ref_id="1">
+      <obj_property name="ElementShortName">state_next</obj_property>
+      <obj_property name="ObjectShortName">state_next</obj_property>
+   </wvobject>
+   <wvobject fp_name="/decoder_tb/uut/curr_detected" type="other" db_ref_id="1">
+      <obj_property name="ElementShortName">curr_detected</obj_property>
+      <obj_property name="ObjectShortName">curr_detected</obj_property>
+   </wvobject>
+   <wvobject fp_name="/decoder_tb/uut/pulse_time" type="array" db_ref_id="1">
+      <obj_property name="ElementShortName">pulse_time[7:0]</obj_property>
+      <obj_property name="ObjectShortName">pulse_time[7:0]</obj_property>
+   </wvobject>
+   <wvobject fp_name="/decoder_tb/uut/pulse_level" type="logic" db_ref_id="1">
+      <obj_property name="ElementShortName">pulse_level</obj_property>
+      <obj_property name="ObjectShortName">pulse_level</obj_property>
+   </wvobject>
+   <wvobject fp_name="/decoder_tb/uut/bit_counter" type="array" db_ref_id="1">
+      <obj_property name="ElementShortName">bit_counter[7:0]</obj_property>
+      <obj_property name="ObjectShortName">bit_counter[7:0]</obj_property>
+      <obj_property name="Radix">UNSIGNEDDECRADIX</obj_property>
+   </wvobject>
+   <wvobject fp_name="/decoder_tb/uut/bit_counter_next" type="array" db_ref_id="1">
+      <obj_property name="ElementShortName">bit_counter_next[7:0]</obj_property>
+      <obj_property name="ObjectShortName">bit_counter_next[7:0]</obj_property>
+      <obj_property name="Radix">UNSIGNEDDECRADIX</obj_property>
+   </wvobject>
+   <wvobject fp_name="/decoder_tb/uut/data_old" type="logic" db_ref_id="1">
+      <obj_property name="ElementShortName">data_old</obj_property>
+      <obj_property name="ObjectShortName">data_old</obj_property>
+   </wvobject>
+</wave_config>

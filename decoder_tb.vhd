@@ -57,7 +57,10 @@ architecture behavior of decoder_tb is
     signal data_out      : std_logic;
     signal frame_detect  : std_logic;
     signal latch_enable  : std_logic;
-
+    
+    --temporiaries
+    signal data : std_logic_vector(19 downto 0);
+    
     -- Clock period definitions
     constant clk_period     : time := (1000 ms) / 32768;                        -- clock period
  
@@ -84,6 +87,30 @@ begin
 
     -- Stimulus process
     stim_proc: process
+        --prodecure that sends out a sequence (passed by parameter)
+        procedure sendData(signal dat : in std_logic_vector(19 downto 0)) is
+        begin
+            data_in <= '0';
+            wait for start_time;  -- Start bit
+            data_in <= '1';
+               
+            for i in 0 to 19 loop -- once per bit
+                wait for pause_time;  
+                data_in <= '0'; 
+                
+                if(dat(i)='0') then
+                    wait for zero_time; 
+                elsif(dat(i)='1') then
+                    wait for one_time; 
+                end if;
+                data_in <= '1';
+               
+            end loop;
+            
+            wait for 50*clk_period;
+        end procedure;
+        
+    
     begin	
         -- hold neutral state for 100 ns.
         wait for 100 ns;	
@@ -95,269 +122,26 @@ begin
 
         wait for clk_period*10;
 
-        -- START dummy transmission only with zeros
-        data_in <= '0';
-        wait for start_time;     -- Start bit
-        data_in <= '1';
-        wait for pause_time;     -- Pause bit
-        data_in <= '0';
-        wait for zero_time;      -- bit          1
-        data_in <= '1';
-        wait for pause_time;     -- Pause bit 
-        data_in <= '0';
-        wait for zero_time;      -- bit          2
-        data_in <= '1';
-        wait for pause_time;     -- Pause bit
-        data_in <= '0';
-        wait for zero_time;      -- bit          3
-        data_in <= '1';       
-        wait for pause_time;     -- Pause bit
-        data_in <= '0';
-        wait for zero_time;      -- bit          4
-        data_in <= '1';        
-        wait for pause_time;     -- Pause bit
-        data_in <= '0';
-        wait for zero_time;      -- bit          5
-        data_in <= '1';       
-        wait for pause_time;     -- Pause bit 
-        data_in <= '0';
-        wait for zero_time;      -- bit          6
-        data_in <= '1';
-        wait for pause_time;     -- Pause bit
-        data_in <= '0';
-        wait for zero_time;      -- bit          7
-        data_in <= '1';       
-        wait for pause_time;     -- Pause bit
-        data_in <= '0';
-        wait for zero_time;      -- bit          8
-        data_in <= '1';        
-        wait for pause_time;     -- Pause bit
-        data_in <= '0';
-        wait for zero_time;      -- bit          9
-        data_in <= '1';
-        wait for pause_time;     -- Pause bit 
-        data_in <= '0';
-        wait for zero_time;      -- bit          10
-        data_in <= '1';
-        wait for pause_time;     -- Pause bit
-        data_in <= '0';
-        wait for zero_time;      -- bit          11
-        data_in <= '1';       
-        wait for pause_time;     -- Pause bit
-        data_in <= '0';
-        wait for zero_time;      -- bit          12
-        data_in <= '1';        
-        wait for pause_time;     -- Pause bit
-        data_in <= '0';
-        wait for zero_time;      -- bit          13
-        data_in <= '1';
-        wait for pause_time;     -- Pause bit 
-        data_in <= '0';
-        wait for zero_time;      -- bit          14
-        data_in <= '1';
-        wait for pause_time;     -- Pause bit
-        data_in <= '0';
-        wait for zero_time;      -- bit          15
-        data_in <= '1';       
-        wait for pause_time;     -- Pause bit
-        data_in <= '0';
-        wait for zero_time;      -- bit          16
-        data_in <= '1';        
-        wait for pause_time;     -- Pause bit
-        data_in <= '0';
-        wait for zero_time;      -- bit          17
-        data_in <= '1';          
-        wait for pause_time;     -- Pause bit
-        data_in <= '0';
-        wait for zero_time;      -- bit          18
-        data_in <= '1';   
-        wait for pause_time;     -- Pause bit
-        data_in <= '0';
-        wait for zero_time;      -- bit          19
-        data_in <= '1';   
-        wait for pause_time;     -- Pause bit
-        data_in <= '0';
-        wait for zero_time;      -- bit          20
-        data_in <= '1';   
-        -- END dummy transmission with zeros
-        
-        wait for 100*clk_period;
-        
-        -- START dummy transmission only with ones
-        data_in <= '0';
-        wait for start_time;     -- Start bit
-        data_in <= '1';
-        wait for pause_time;     -- Pause bit
-        data_in <= '0';
-        wait for one_time;       -- bit          1
-        data_in <= '1';
-        wait for pause_time;     -- Pause bit 
-        data_in <= '0';
-        wait for one_time;       -- bit          2
-        data_in <= '1';
-        wait for pause_time;     -- Pause bit
-        data_in <= '0';
-        wait for one_time;       -- bit          3
-        data_in <= '1';       
-        wait for pause_time;     -- Pause bit
-        data_in <= '0';
-        wait for one_time;       -- bit          4
-        data_in <= '1';        
-        wait for pause_time;     -- Pause bit
-        data_in <= '0';
-        wait for one_time;       -- bit          5
-        data_in <= '1';       
-        wait for pause_time;     -- Pause bit 
-        data_in <= '0';
-        wait for one_time;       -- bit          6
-        data_in <= '1';
-        wait for pause_time;     -- Pause bit
-        data_in <= '0';
-        wait for one_time;       -- bit          7
-        data_in <= '1';       
-        wait for pause_time;     -- Pause bit
-        data_in <= '0';
-        wait for one_time;       -- bit          8
-        data_in <= '1';        
-        wait for pause_time;     -- Pause bit
-        data_in <= '0';
-        wait for one_time;       -- bit          9
-        data_in <= '1';
-        wait for pause_time;     -- Pause bit 
-        data_in <= '0';
-        wait for one_time;       -- bit          10
-        data_in <= '1';
-        wait for pause_time;     -- Pause bit
-        data_in <= '0';
-        wait for one_time;       -- bit          11
-        data_in <= '1';       
-        wait for pause_time;     -- Pause bit
-        data_in <= '0';
-        wait for one_time;       -- bit          12
-        data_in <= '1';        
-        wait for pause_time;     -- Pause bit
-        data_in <= '0';
-        wait for one_time;       -- bit          13
-        data_in <= '1';
-        wait for pause_time;     -- Pause bit 
-        data_in <= '0';
-        wait for one_time;       -- bit          14
-        data_in <= '1';
-        wait for pause_time;     -- Pause bit
-        data_in <= '0';
-        wait for one_time;       -- bit          15
-        data_in <= '1';       
-        wait for pause_time;     -- Pause bit
-        data_in <= '0';
-        wait for one_time;       -- bit          16
-        data_in <= '1';        
-        wait for pause_time;     -- Pause bit
-        data_in <= '0';
-        wait for one_time;       -- bit          17
-        data_in <= '1';          
-        wait for pause_time;     -- Pause bit
-        data_in <= '0';
-        wait for one_time;       -- bit          18
-        data_in <= '1';   
-        wait for pause_time;     -- Pause bit
-        data_in <= '0';
-        wait for one_time;       -- bit          19
-        data_in <= '1';   
-        wait for pause_time;     -- Pause bit
-        data_in <= '0';
-        wait for one_time;       -- bit          20
-        data_in <= '1';   
-        -- END dummy transmission with ones
-        
-        wait for 100*clk_period;
+        --Send only zeros
+        data <= (others=>'0');
+        sendData(data);
 
-        -- START dummy transmission only with ones and zeros
-        data_in <= '0';
-        wait for start_time;     -- Start bit
-        data_in <= '1';
-        wait for pause_time;     -- Pause bit
-        data_in <= '0';
-        wait for zero_time;      -- bit          1
-        data_in <= '1';
-        wait for pause_time;     -- Pause bit 
-        data_in <= '0';
-        wait for one_time;       -- bit          2
-        data_in <= '1';
-        wait for pause_time;     -- Pause bit
-        data_in <= '0';
-        wait for zero_time;      -- bit          3
-        data_in <= '1';       
-        wait for pause_time;     -- Pause bit
-        data_in <= '0';
-        wait for one_time;       -- bit          4
-        data_in <= '1';        
-        wait for pause_time;     -- Pause bit
-        data_in <= '0';
-        wait for zero_time;      -- bit          5
-        data_in <= '1';       
-        wait for pause_time;     -- Pause bit 
-        data_in <= '0';
-        wait for one_time;       -- bit          6
-        data_in <= '1';
-        wait for pause_time;     -- Pause bit
-        data_in <= '0';
-        wait for zero_time;      -- bit          7
-        data_in <= '1';       
-        wait for pause_time;     -- Pause bit
-        data_in <= '0';
-        wait for one_time;       -- bit          8
-        data_in <= '1';        
-        wait for pause_time;     -- Pause bit
-        data_in <= '0';
-        wait for zero_time;      -- bit          9
-        data_in <= '1';
-        wait for pause_time;     -- Pause bit 
-        data_in <= '0';
-        wait for one_time;       -- bit          10
-        data_in <= '1';
-        wait for pause_time;     -- Pause bit
-        data_in <= '0';
-        wait for zero_time;      -- bit          11
-        data_in <= '1';       
-        wait for pause_time;     -- Pause bit
-        data_in <= '0';
-        wait for one_time;       -- bit          12
-        data_in <= '1';        
-        wait for pause_time;     -- Pause bit
-        data_in <= '0';
-        wait for zero_time;      -- bit          13
-        data_in <= '1';
-        wait for pause_time;     -- Pause bit 
-        data_in <= '0';
-        wait for one_time;       -- bit          14
-        data_in <= '1';
-        wait for pause_time;     -- Pause bit
-        data_in <= '0';
-        wait for zero_time;      -- bit          15
-        data_in <= '1';       
-        wait for pause_time;     -- Pause bit
-        data_in <= '0';
-        wait for one_time;       -- bit          16
-        data_in <= '1';        
-        wait for pause_time;     -- Pause bit
-        data_in <= '0';
-        wait for zero_time;      -- bit          17
-        data_in <= '1';          
-        wait for pause_time;     -- Pause bit
-        data_in <= '0';
-        wait for one_time;       -- bit          18
-        data_in <= '1';   
-        wait for pause_time;     -- Pause bit
-        data_in <= '0';
-        wait for zero_time;      -- bit          19
-        data_in <= '1';   
-        wait for pause_time;     -- Pause bit
-        data_in <= '0';
-        wait for one_time;       -- bit          20
-        data_in <= '1';   
-        -- END dummy transmission with ones and zeros
+        --Send only ones
+        data <= (others=>'1');
+        sendData(data);
         
-        wait for clk_period*10;
+        --Send 10101...
+        data <= ("10101010101010101010");
+        sendData(data);
+        
+        --Send 01010...
+        data <= ("01010101010101010101");
+        sendData(data);
+        
+        --Send "Random"
+        data <= ("11000101011100110101");
+        sendData(data);
+
         wait;
     end process;
 end;
