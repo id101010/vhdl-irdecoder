@@ -12,3 +12,5 @@
 !*.jhd
 !*.wcfg
 !*/
+!documentation/*.dia
+!documentation/images/*.png
