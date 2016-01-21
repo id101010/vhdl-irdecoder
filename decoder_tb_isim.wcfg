@@ -6,6 +6,7 @@
       <db_ref path="/home/timo/vhdl-irdecoder/decoder_tb_isim_beh.wdb" id="1" type="auto">
          <top_modules>
             <top_module name="decoder_tb" />
+            <top_module name="math_real" />
             <top_module name="numeric_std" />
             <top_module name="std_logic_1164" />
          </top_modules>
@@ -23,6 +24,10 @@
    <wvobject fp_name="/decoder_tb/uut/data_in" type="logic" db_ref_id="1">
       <obj_property name="ElementShortName">data_in</obj_property>
       <obj_property name="ObjectShortName">data_in</obj_property>
+   </wvobject>
+   <wvobject fp_name="/decoder_tb/uut/data_old" type="logic" db_ref_id="1">
+      <obj_property name="ElementShortName">data_old</obj_property>
+      <obj_property name="ObjectShortName">data_old</obj_property>
    </wvobject>
    <wvobject fp_name="/decoder_tb/data" type="array" db_ref_id="1">
       <obj_property name="ElementShortName">data[19:0]</obj_property>
@@ -55,6 +60,7 @@
    <wvobject fp_name="/decoder_tb/uut/pulse_time" type="array" db_ref_id="1">
       <obj_property name="ElementShortName">pulse_time[7:0]</obj_property>
       <obj_property name="ObjectShortName">pulse_time[7:0]</obj_property>
+      <obj_property name="Radix">UNSIGNEDDECRADIX</obj_property>
    </wvobject>
    <wvobject fp_name="/decoder_tb/uut/pulse_level" type="logic" db_ref_id="1">
       <obj_property name="ElementShortName">pulse_level</obj_property>
@@ -69,9 +75,5 @@
       <obj_property name="ElementShortName">bit_counter_next[7:0]</obj_property>
       <obj_property name="ObjectShortName">bit_counter_next[7:0]</obj_property>
       <obj_property name="Radix">UNSIGNEDDECRADIX</obj_property>
-   </wvobject>
-   <wvobject fp_name="/decoder_tb/uut/data_old" type="logic" db_ref_id="1">
-      <obj_property name="ElementShortName">data_old</obj_property>
-      <obj_property name="ObjectShortName">data_old</obj_property>
    </wvobject>
 </wave_config>
