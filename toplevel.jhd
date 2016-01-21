@@ -1,6 +1,4 @@
 MODULE toplevel
-	SUBMODULE serparbuf
-		INSTANCE XLXI_18
 	SUBMODULE hex2seg
 		INSTANCE XLXI_19
 	SUBMODULE hex2seg

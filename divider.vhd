@@ -24,29 +24,33 @@ use ieee.std_logic_1164.all;
 use ieee.numeric_std.all;
 
 entity divider is 
-    generic( n            : natural := 400);
-    port( fclk            : in std_logic;
-          fclkn           : out std_logic);
+    generic( n            : natural := 400);        -- generic parameter to specify the factor
+    port( fclk            : in std_logic;           -- input clock
+          fclkn           : out std_logic);         -- output clock
 end divider;
 
 architecture Behavioral of divider is
 
-    signal counter : unsigned(15 downto 0) := (others => '0');
+    signal counter : unsigned(15 downto 0) := (others => '0');  -- counter signal which acts as temporary storage
 
 begin
 
+    -- purpose : produces an output frequency with 50% duty cycle by dividing the input frequency
+    -- type    : sequential (on fclk)
+    -- inputs  : fclk
+    -- outputs : fclkn
     process(fclk)
     begin
-        if(rising_edge(fclk)) then
-            if(counter < n/2-1) then
-                counter <= counter + 1;
-                fclkn <= '0';
-            elsif(counter < n-1) then
-                counter <= counter + 1;
-                fclkn <= '1';
+        if(rising_edge(fclk)) then              -- when fclk rises
+            if(counter < ((n / 2) - 1)) then    -- as long as the counter is smaller than half the division factor
+                counter <= counter + 1;         -- increment counter
+                fclkn <= '0';                   -- set output to zero
+            elsif(counter < n - 1) then         -- as long as the counter is smaller the full division factor
+                counter <= counter + 1;         -- increment counter
+                fclkn <= '1';                   -- set the output
             else
-                fclkn <= '0';
-                counter <= (others => '0');
+                fclkn <= '0';                   -- reset the output
+                counter <= (others => '0');     -- set the counter to 0
             end if;
         end if;
     end process; 
