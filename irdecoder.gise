@@ -15,7 +15,7 @@
 
   <!--                                                          -->
 
-  <!-- Copyright (c) 1995-2012 Xilinx, Inc.  All rights reserved. -->
+  <!-- Copyright (c) 1995-2013 Xilinx, Inc.  All rights reserved. -->
 
   <version xmlns="http://www.xilinx.com/XMLSchema">11.1</version>
 
@@ -36,7 +36,10 @@
     <file xil_pn:fileType="FILE_XST_PROJECT" xil_pn:name="decoder_tb_stx_beh.prj"/>
     <file xil_pn:fileType="FILE_SYMBOL" xil_pn:name="divider.sym" xil_pn:origination="imported"/>
     <file xil_pn:fileType="FILE_LOG" xil_pn:name="fuse.log"/>
+    <file xil_pn:fileType="FILE_XST_PROJECT" xil_pn:name="hex2seg.prj"/>
+    <file xil_pn:fileType="FILE_XST_STX" xil_pn:name="hex2seg.stx"/>
     <file xil_pn:fileType="FILE_SYMBOL" xil_pn:name="hex2seg.sym" xil_pn:origination="imported"/>
+    <file xil_pn:fileType="FILE_XST" xil_pn:name="hex2seg.xst"/>
     <file xil_pn:fileType="FILE_DIRECTORY" xil_pn:name="isim"/>
     <file xil_pn:branch="BehavioralSim" xil_pn:fileType="FILE_CMD" xil_pn:name="isim.cmd"/>
     <file xil_pn:branch="BehavioralSim" xil_pn:fileType="FILE_LOG" xil_pn:name="isim.log"/>
@@ -46,6 +49,9 @@
       <branch xil_pn:name="BehavioralSim"/>
     </file>
     <file xil_pn:branch="BehavioralSim" xil_pn:fileType="FILE_ISIM_EXE" xil_pn:name="serparbuf_tb_isim_beh.exe"/>
+    <file xil_pn:fileType="FILE_XST_PROJECT" xil_pn:name="serparlatch.prj"/>
+    <file xil_pn:fileType="FILE_XST_STX" xil_pn:name="serparlatch.stx"/>
+    <file xil_pn:fileType="FILE_XST" xil_pn:name="serparlatch.xst"/>
     <file xil_pn:branch="Implementation" xil_pn:fileType="FILE_NGDBUILD_LOG" xil_pn:name="toplevel.bld"/>
     <file xil_pn:branch="Implementation" xil_pn:fileType="FILE_CHK" xil_pn:name="toplevel.chk"/>
     <file xil_pn:fileType="FILE_CMD_LOG" xil_pn:name="toplevel.cmd_log"/>
@@ -93,7 +99,7 @@
       <status xil_pn:value="SuccessfullyRun"/>
       <status xil_pn:value="ReadyToRun"/>
     </transform>
-    <transform xil_pn:end_ts="1453214479" xil_pn:in_ck="4384642265823548702" xil_pn:name="TRAN_copyAbstractToPostAbstractSimulation" xil_pn:start_ts="1453214479">
+    <transform xil_pn:end_ts="1453332450" xil_pn:in_ck="6528953708007364807" xil_pn:name="TRAN_copyAbstractToPostAbstractSimulation" xil_pn:start_ts="1453332450">
       <status xil_pn:value="SuccessfullyRun"/>
       <status xil_pn:value="ReadyToRun"/>
       <status xil_pn:value="OutOfDateForInputs"/>
@@ -108,14 +114,15 @@
       <outfile xil_pn:name="hex2seg_tb.vhd"/>
       <outfile xil_pn:name="outputswitcher.vhd"/>
       <outfile xil_pn:name="serparbuf_tb.vhd"/>
+      <outfile xil_pn:name="serparlatch.vhd"/>
     </transform>
-    <transform xil_pn:end_ts="1452862513" xil_pn:in_ck="855375662964655181" xil_pn:name="TRAN_schematicsToHdlSim" xil_pn:prop_ck="-2087051944661686603" xil_pn:start_ts="1452862511">
+    <transform xil_pn:end_ts="1453332453" xil_pn:in_ck="855375662964655181" xil_pn:name="TRAN_schematicsToHdlSim" xil_pn:prop_ck="-2087051944661686603" xil_pn:start_ts="1453332452">
       <status xil_pn:value="SuccessfullyRun"/>
       <status xil_pn:value="ReadyToRun"/>
       <outfile xil_pn:name="serparbuf.vhf"/>
       <outfile xil_pn:name="toplevel.vhf"/>
     </transform>
-    <transform xil_pn:end_ts="1453214479" xil_pn:in_ck="6660668972560316055" xil_pn:name="TRAN_copyPostAbstractToPreSimulation" xil_pn:start_ts="1453214479">
+    <transform xil_pn:end_ts="1453332453" xil_pn:in_ck="8758625764980044864" xil_pn:name="TRAN_copyPostAbstractToPreSimulation" xil_pn:start_ts="1453332453">
       <status xil_pn:value="SuccessfullyRun"/>
       <status xil_pn:value="ReadyToRun"/>
       <status xil_pn:value="OutOfDateForInputs"/>
@@ -132,9 +139,10 @@
       <outfile xil_pn:name="outputswitcher.vhd"/>
       <outfile xil_pn:name="serparbuf.vhf"/>
       <outfile xil_pn:name="serparbuf_tb.vhd"/>
+      <outfile xil_pn:name="serparlatch.vhd"/>
       <outfile xil_pn:name="toplevel.vhf"/>
     </transform>
-    <transform xil_pn:end_ts="1453214485" xil_pn:in_ck="6660668972560316055" xil_pn:name="TRAN_ISimulateBehavioralModelRunFuse" xil_pn:prop_ck="-251910964765516840" xil_pn:start_ts="1453214479">
+    <transform xil_pn:end_ts="1453332455" xil_pn:in_ck="8758625764980044864" xil_pn:name="TRAN_ISimulateBehavioralModelRunFuse" xil_pn:prop_ck="-251910964765516840" xil_pn:start_ts="1453332453">
       <status xil_pn:value="SuccessfullyRun"/>
       <status xil_pn:value="ReadyToRun"/>
       <status xil_pn:value="OutOfDateForInputs"/>
@@ -149,7 +157,7 @@
       <outfile xil_pn:name="isim.log"/>
       <outfile xil_pn:name="xilinxsim.ini"/>
     </transform>
-    <transform xil_pn:end_ts="1453214486" xil_pn:in_ck="-4983867101605257400" xil_pn:name="TRAN_ISimulateBehavioralModel" xil_pn:prop_ck="-4882169552404092923" xil_pn:start_ts="1453214485">
+    <transform xil_pn:end_ts="1453332455" xil_pn:in_ck="1151238224060903258" xil_pn:name="TRAN_ISimulateBehavioralModel" xil_pn:prop_ck="-4882169552404092923" xil_pn:start_ts="1453332455">
       <status xil_pn:value="SuccessfullyRun"/>
       <status xil_pn:value="ReadyToRun"/>
       <status xil_pn:value="OutOfDateForPredecessor"/>
@@ -166,6 +174,7 @@
     <transform xil_pn:end_ts="1453213583" xil_pn:in_ck="855375662964655181" xil_pn:name="TRAN_schematicsToHdl" xil_pn:prop_ck="476059982243473164" xil_pn:start_ts="1453213580">
       <status xil_pn:value="SuccessfullyRun"/>
       <status xil_pn:value="ReadyToRun"/>
+      <status xil_pn:value="OutOfDateForInputs"/>
       <outfile xil_pn:name="serparbuf.vhf"/>
       <outfile xil_pn:name="toplevel.vhf"/>
     </transform>
@@ -173,7 +182,12 @@
       <status xil_pn:value="SuccessfullyRun"/>
       <status xil_pn:value="WarningsGenerated"/>
       <status xil_pn:value="ReadyToRun"/>
-      <outfile xil_pn:name=".lso"/>
+      <status xil_pn:value="OutOfDateForInputs"/>
+      <status xil_pn:value="OutOfDateForPredecessor"/>
+      <status xil_pn:value="OutOfDateForOutputs"/>
+      <status xil_pn:value="InputAdded"/>
+      <status xil_pn:value="InputChanged"/>
+      <status xil_pn:value="OutputRemoved"/>
       <outfile xil_pn:name="_xmsgs/xst.xmsgs"/>
       <outfile xil_pn:name="toplevel.jhd"/>
       <outfile xil_pn:name="toplevel.lso"/>
@@ -183,7 +197,6 @@
       <outfile xil_pn:name="toplevel.stx"/>
       <outfile xil_pn:name="toplevel.syr"/>
       <outfile xil_pn:name="toplevel.xst"/>
-      <outfile xil_pn:name="toplevel_vhdl.prj"/>
       <outfile xil_pn:name="toplevel_xst.xrpt"/>
       <outfile xil_pn:name="webtalk_pn.xml"/>
       <outfile xil_pn:name="xst"/>
@@ -191,10 +204,13 @@
     <transform xil_pn:end_ts="1452287770" xil_pn:in_ck="5180360667279505590" xil_pn:name="TRAN_compileBCD2" xil_pn:prop_ck="4784894232377633197" xil_pn:start_ts="1452287770">
       <status xil_pn:value="SuccessfullyRun"/>
       <status xil_pn:value="ReadyToRun"/>
+      <status xil_pn:value="OutOfDateForPredecessor"/>
     </transform>
     <transform xil_pn:end_ts="1453215851" xil_pn:in_ck="-8462396126576901529" xil_pn:name="TRAN_ngdbuild" xil_pn:prop_ck="8145602123014828634" xil_pn:start_ts="1453215845">
       <status xil_pn:value="SuccessfullyRun"/>
       <status xil_pn:value="ReadyToRun"/>
+      <status xil_pn:value="OutOfDateForInputs"/>
+      <status xil_pn:value="OutOfDateForPredecessor"/>
       <outfile xil_pn:name="_ngo"/>
       <outfile xil_pn:name="_xmsgs/ngdbuild.xmsgs"/>
       <outfile xil_pn:name="toplevel.bld"/>
@@ -205,6 +221,8 @@
       <status xil_pn:value="SuccessfullyRun"/>
       <status xil_pn:value="WarningsGenerated"/>
       <status xil_pn:value="ReadyToRun"/>
+      <status xil_pn:value="OutOfDateForInputs"/>
+      <status xil_pn:value="OutOfDateForPredecessor"/>
       <outfile xil_pn:name="toplevel.chk"/>
       <outfile xil_pn:name="toplevel.cxt"/>
       <outfile xil_pn:name="toplevel.gyd"/>
@@ -224,16 +242,23 @@
     <transform xil_pn:end_ts="1453215888" xil_pn:in_ck="6038244062278953810" xil_pn:name="TRANEXT_crtProg_xbr" xil_pn:prop_ck="5245363024343" xil_pn:start_ts="1453215883">
       <status xil_pn:value="SuccessfullyRun"/>
       <status xil_pn:value="ReadyToRun"/>
-      <outfile xil_pn:name="toplevel.jed"/>
+      <status xil_pn:value="OutOfDateForInputs"/>
+      <status xil_pn:value="OutOfDateForPredecessor"/>
+      <status xil_pn:value="OutOfDateForOutputs"/>
+      <status xil_pn:value="OutputRemoved"/>
     </transform>
     <transform xil_pn:end_ts="1453215910" xil_pn:in_ck="6038244062278940524" xil_pn:name="TRAN_configureTargetDevice_CPLD" xil_pn:prop_ck="3990039742483918989" xil_pn:start_ts="1453215909">
       <status xil_pn:value="SuccessfullyRun"/>
-      <status xil_pn:value="ReadyToRun"/>
+      <status xil_pn:value="NotReadyToRun"/>
+      <status xil_pn:value="OutOfDateForInputs"/>
+      <status xil_pn:value="OutOfDateForPredecessor"/>
+      <status xil_pn:value="InputRemoved"/>
     </transform>
     <transform xil_pn:name="TRAN_timRpt">
       <status xil_pn:value="AbortedRun"/>
       <status xil_pn:value="ReadyToRun"/>
       <status xil_pn:value="OutOfDateForInputs"/>
+      <status xil_pn:value="OutOfDateForPredecessor"/>
       <status xil_pn:value="InputAdded"/>
       <status xil_pn:value="InputChanged"/>
       <status xil_pn:value="InputRemoved"/>

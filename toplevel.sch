@@ -45,7 +45,6 @@
         <signal name="cln1" />
         <signal name="XLXN_164" />
         <signal name="XLXN_165" />
-        <signal name="XLXN_168" />
         <port polarity="Input" name="clk" />
         <port polarity="Output" name="phase_n" />
         <port polarity="Input" name="IO_4" />
@@ -146,6 +145,17 @@
             <rect width="64" x="320" y="-460" height="24" />
             <line x2="384" y1="-448" y2="-448" x1="320" />
             <rect width="64" x="0" y="-712" height="24" />
+        </blockdef>
+        <blockdef name="serparlatch">
+            <timestamp>2016-1-21T0:2:33</timestamp>
+            <rect width="336" x="64" y="-320" height="320" />
+            <line x2="0" y1="-288" y2="-288" x1="64" />
+            <line x2="0" y1="-224" y2="-224" x1="64" />
+            <line x2="0" y1="-160" y2="-160" x1="64" />
+            <line x2="0" y1="-96" y2="-96" x1="64" />
+            <line x2="0" y1="-32" y2="-32" x1="64" />
+            <rect width="64" x="400" y="-300" height="24" />
+            <line x2="464" y1="-288" y2="-288" x1="400" />
         </blockdef>
         <block symbolname="divider" name="XLXI_68">
             <blockpin signalname="clk" name="fclk" />
@@ -263,6 +273,14 @@
         <block symbolname="buf" name="XLXI_82">
             <blockpin signalname="XLXN_163" name="I" />
             <blockpin signalname="cln1" name="O" />
+        </block>
+        <block symbolname="serparlatch" name="XLXI_83">
+            <blockpin name="clk" />
+            <blockpin name="shift_out" />
+            <blockpin name="shift_down" />
+            <blockpin name="clear" />
+            <blockpin name="serial_in" />
+            <blockpin name="parallel_output(19:0)" />
         </block>
     </netlist>
     <sheet sheetnum="1" width="5440" height="3520">
@@ -514,5 +532,7 @@
         <branch name="XLXN_12">
             <wire x2="2240" y1="1328" y2="1328" x1="2000" />
         </branch>
+        <instance x="2240" y="1968" name="XLXI_83" orien="R0">
+        </instance>
     </sheet>
 </drawing>
