@@ -25,7 +25,7 @@ use ieee.numeric_std.all;
 
 entity serparlatch is
    generic (    nbits           : natural := 19);
-   port (       clk             : in std_logic;                             -- input clock frequency
+   port (       clk             : in std_logic; 		                    -- input clock frequency
                 shift_out       : in std_logic;                             -- signal to set the output latch
                 shift_down      : in std_logic;                             -- shift down signal
                 clear           : in std_logic;                             -- clear everything
