@@ -26,10 +26,10 @@ use ieee.numeric_std.all;
 entity serparlatch is
    generic (    nbits           : natural := 19);
    port (       clk             : in std_logic; 		                    -- input clock frequency
-                shift_out       : in std_logic;                             -- signal to set the output latch
-                shift_down      : in std_logic;                             -- shift down signal
-                clear           : in std_logic;                             -- clear everything
-                serial_in       : in std_logic;                             -- serial input
+                shift_out       : in std_logic;                             -- push internal data (latched) to output 
+                shift_down      : in std_logic;                             -- shift all internal bits (latched) one bit down, and set the highest bit to serial_in
+                clear           : in std_logic;                             -- asynchronous, high active clear
+                serial_in       : in std_logic;                             -- serial input (synchronous on clk, enabled by shift_down)
                 parallel_output : out std_logic_vector(nbits downto 0));    -- parallel output
 end serparlatch;
 
@@ -43,20 +43,18 @@ begin
     -- type    : sequential (on clk)
     -- inputs  : clk, clear, shift_down, shift_out, serial_in
     -- outputs : parallel_out
-    process(clk)
+    process(clk,clear)
     begin
-        if(rising_edge(clk)) then
-            if (clear = '1') then                                            -- if a clear signal gets detected, clear everything                        
-                parallel_output_latch <= (others => '0');
-                parallel_output <= (others => '0');
+        if (clear = '1') then -- if a clear signal gets detected, clear everything                        
+            parallel_output_latch <= (others => '0');
+            parallel_output <= (others => '0');
+        elsif(rising_edge(clk)) then -- positive edge on clk
+            if (shift_down = '1') then -- shift down all bits and read a new one into the latch
+                parallel_output_latch((nbits-1) downto 0) <= parallel_output_latch(nbits downto 1);
+                parallel_output_latch(nbits) <= serial_in;
             end if;
-            if (shift_down = '1') then                                       -- shift down all bits and read a new one into the latch
-                parallel_output_latch(nbits downto 1) <= parallel_output_latch((nbits - 1) downto 0);
-                parallel_output_latch(0) <= serial_in;
-            end if;
-            if (shift_out = '1') then                                        -- make the contents of the latch visible
+            if (shift_out = '1') then -- make the contents of the latch visible
                 parallel_output(nbits downto 0) <= parallel_output_latch(nbits downto 0);
-                parallel_output_latch <= (others => '0');
             end if;
         end if;
     end process;

@@ -23,6 +23,10 @@ ARCHITECTURE behavioral OF serparlatch_tb IS
    SIGNAL SHIFT_DOWN	    :	STD_LOGIC;
    SIGNAL PARALLEL_OUTPUT	:	STD_LOGIC_VECTOR (19 DOWNTO 0);
 
+    
+   constant CLK_PERIOD     : time := (1000 ms) / 32768;
+
+
 BEGIN
 
    UUT: serparlatch PORT MAP(
@@ -34,95 +38,81 @@ BEGIN
 		PARALLEL_OUTPUT => PARALLEL_OUTPUT
    );
 
--- *** Test Bench - User Defined Section ***
+
+
+    -- Clock process definitions
+    clk_process :process
+    begin
+        clk <= '0';
+        wait for clk_period/2;
+        clk <= '1';
+        wait for clk_period/2;
+    end process;
+
    tb : PROCESS
    BEGIN
+
+   
 	   --- Clear 
-       	CLK <= '0';
         CLEAR <= '1';
 		WAIT for 2 us;
 		CLEAR <= '0';
 		WAIT for 2 us;
-		
-		-- test if nothing happens when EN=0
-		SERIAL_IN <= '1';
-		SHIFT_DOWN <= '1';
-		SHIFT_OUT <='1';
-		WAIT for 2 us;
-		SHIFT_DOWN <= '0';
-		WAIT for 2 us;
-		SHIFT_DOWN <= '1';
-		WAIT for 2 us;
-		
+			
 		-- start real test: shift in 3 bits, then shift them out
-		CLEAR <= '1';
-		SERIAL_IN <= '1';
 		SHIFT_OUT <= '0';
-		SHIFT_DOWN <= '0';
-		WAIT for 2 us;
-		CLEAR <= '0';
-		WAIT for 2 us;
-        CLK <= '1';
-		-- shift a 1 down
 		SHIFT_DOWN <= '1';
-		WAIT for 2 us;
-		SHIFT_DOWN <= '0';
-		SERIAL_IN <= '0';
-		WAIT for 2 us;
-		-- shift a 0 down
-		SHIFT_DOWN <= '1';
-		WAIT for 2 us;
-		SHIFT_DOWN <= '0';
-		WAIT for 2 us;
-		-- shift a 0 down
-		SHIFT_DOWN <= '1';
-		WAIT for 2 us;
-		SHIFT_DOWN <= '0';
-		WAIT for 2 us;
-		-- shift out
-		SHIFT_OUT <= '1';
-		WAIT for 2 us;
-		SHIFT_OUT <= '0';
-		SERIAL_IN <= '1';
-		WAIT for 2 us;
-		
+   
+        -- shift a 1 down
+        SERIAL_IN <= '1';
+		WAIT for CLK_PERIOD;
+
+	    -- shift a 0 down
+        SERIAL_IN <= '0';
+        WAIT for CLK_PERIOD;
+    
+        -- shift a 0 down
+        SERIAL_IN <= '0';
+        WAIT for CLK_PERIOD;
+        
+        --shift them out
+        SHIFT_DOWN <='0';
+        SHIFT_OUT <= '1';
+        WAIT for CLK_PERIOD;
+        
+ 	
 		--More testing: shift in another 2 bits, and then shift them out
-		-- shift a 1 down
+        SHIFT_OUT <= '0';
 		SHIFT_DOWN <= '1';
-		WAIT for 2 us;
-		SHIFT_DOWN <= '0';
-		WAIT for 2 us;
-		-- shift a 1 down
-		SHIFT_DOWN <= '1';
-		WAIT for 2 us;
-		SHIFT_DOWN <= '0';
-		SERIAL_IN <= '0';
-		WAIT for 2 us;
-		-- shift a 0 down
-		SHIFT_DOWN <= '1';
-		WAIT for 2 us;
-		SHIFT_DOWN <= '0';
-		WAIT for 2 us;
-		-- shift out
-		SHIFT_OUT <= '1';
-		WAIT for 2 us;
-		SHIFT_OUT <= '0';
-		WAIT for 2 us;
-		
-		--We have 6 bits in, lets add another 14 0-bits
-		for i in 13 downto 0 loop
-				-- shift a 0 down
-				SHIFT_DOWN <= '1';
-				WAIT for 2 us;
-				SHIFT_DOWN <= '0';
-				WAIT for 2 us;
+   
+        -- shift a 1 down
+        SERIAL_IN <= '1';
+        WAIT for CLK_PERIOD;
+        
+	    -- shift a 0 down
+        SERIAL_IN <= '0';
+        WAIT for CLK_PERIOD;
+	
+        --shift them out
+        SHIFT_DOWN <='0';
+        SHIFT_OUT <= '1';
+        WAIT for CLK_PERIOD;
+        
+      	
+		--We have 5 bits in, lets add another 15 0-bits
+        SHIFT_OUT <= '0';
+        SHIFT_DOWN <= '1';
+		for i in 14 downto 0 loop
+            -- shift a 0 down
+            SERIAL_IN <= '0';
+            WAIT for CLK_PERIOD;
 		end loop;
 		
 		-- shift out
+        SHIFT_DOWN <= '0';
 		SHIFT_OUT <= '1';
-		WAIT for 2 us;
+		WAIT for CLK_PERIOD;
 		SHIFT_OUT <= '0';
-		WAIT for 2 us;
 		WAIT;
 		
 		
