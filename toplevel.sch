@@ -6,21 +6,6 @@
         <trait edittrait="all:0" />
     </attr>
     <netlist>
-        <signal name="XLXN_278" />
-        <signal name="XLXN_281" />
-        <signal name="XLXN_283" />
-        <signal name="XLXN_287" />
-        <signal name="XLXN_288" />
-        <signal name="XLXN_308" />
-        <signal name="XLXN_348" />
-        <signal name="XLXN_388" />
-        <signal name="XLXN_409" />
-        <signal name="XLXN_411" />
-        <signal name="XLXN_415" />
-        <signal name="XLXN_417" />
-        <signal name="XLXN_419" />
-        <signal name="XLXN_422" />
-        <signal name="XLXN_441" />
         <signal name="DIP2" />
         <signal name="XLXN_236(19:0)" />
         <signal name="DIP1" />
@@ -39,7 +24,6 @@
         <signal name="IO_4" />
         <signal name="clk" />
         <signal name="cln1" />
-        <signal name="XLXN_481" />
         <signal name="XLXN_163" />
         <signal name="XLXN_155" />
         <signal name="XLXN_154(3:0)" />
@@ -124,7 +108,7 @@
             <line x2="384" y1="-32" y2="-32" x1="320" />
         </blockdef>
         <blockdef name="outputswitcher">
-            <timestamp>2016-1-8T19:9:26</timestamp>
+            <timestamp>2016-1-22T12:19:20</timestamp>
             <rect width="256" x="64" y="-832" height="440" />
             <line x2="0" y1="-800" y2="-800" x1="64" />
             <line x2="384" y1="-800" y2="-800" x1="320" />
@@ -134,9 +118,6 @@
             <line x2="384" y1="-544" y2="-544" x1="320" />
             <line x2="384" y1="-480" y2="-480" x1="320" />
             <line x2="384" y1="-416" y2="-416" x1="320" />
-            <line x2="0" y1="-764" y2="-764" x1="64" />
-            <line x2="0" y1="-732" y2="-732" x1="64" />
-            <line x2="0" y1="-700" y2="-700" x1="64" />
             <rect width="64" x="320" y="-780" height="24" />
             <line x2="384" y1="-768" y2="-768" x1="320" />
             <line x2="384" y1="-704" y2="-704" x1="320" />
@@ -149,9 +130,12 @@
             <line x2="384" y1="-512" y2="-512" x1="320" />
             <rect width="64" x="320" y="-460" height="24" />
             <line x2="384" y1="-448" y2="-448" x1="320" />
-            <rect width="64" x="0" y="-712" height="24" />
+            <rect width="64" x="0" y="-716" height="24" />
+            <line x2="0" y1="-704" y2="-704" x1="64" />
+            <line x2="0" y1="-736" y2="-736" x1="64" />
+            <line x2="0" y1="-768" y2="-768" x1="64" />
         </blockdef>
-        <blockdef name="serparlatch">
+        <blockdef name="serparbuf">
             <timestamp>2016-1-21T0:2:33</timestamp>
             <rect width="336" x="64" y="-320" height="320" />
             <line x2="0" y1="-288" y2="-288" x1="64" />
@@ -249,7 +233,7 @@
             <blockpin signalname="XLXN_151" name="en" />
             <blockpin signalname="XLXN_152(3:0)" name="hex(3:0)" />
         </block>
-        <block symbolname="serparlatch" name="XLXI_83">
+        <block symbolname="serparbuf" name="XLXI_83">
             <blockpin signalname="clk" name="clk" />
             <blockpin signalname="XLXN_166" name="shift_out" />
             <blockpin signalname="XLXN_167" name="shift_down" />

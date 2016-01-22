@@ -3,11 +3,11 @@ USE ieee.std_logic_1164.ALL;
 USE ieee.numeric_std.ALL;
 LIBRARY UNISIM;
 USE UNISIM.Vcomponents.ALL;
-ENTITY serparlatch_tb IS
-END serparlatch_tb;
-ARCHITECTURE behavioral OF serparlatch_tb IS 
+ENTITY serparbuf_tb IS
+END serparbuf_tb;
+ARCHITECTURE behavioral OF serparbuf_tb IS 
 
-   COMPONENT serparlatch
+   COMPONENT serparbuf
    PORT(  SERIAL_IN	        :	IN	STD_LOGIC; 
           CLK               :   IN  STD_LOGIC;
           CLEAR	            :	IN	STD_LOGIC; 
@@ -29,7 +29,7 @@ ARCHITECTURE behavioral OF serparlatch_tb IS
 
 BEGIN
 
-   UUT: serparlatch PORT MAP(
+   UUT: serparbuf PORT MAP(
 		SERIAL_IN   => SERIAL_IN, 
         CLK         => CLK,
 		CLEAR       => CLEAR, 

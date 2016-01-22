@@ -17,5 +17,5 @@ MODULE toplevel
 		INSTANCE XLXI_68
 	SUBMODULE outputswitcher
 		INSTANCE XLXI_70
-	SUBMODULE serparlatch
+	SUBMODULE serparbuf
 		INSTANCE XLXI_83

@@ -23,7 +23,7 @@ library ieee;
 use ieee.std_logic_1164.all;
 use ieee.numeric_std.all;
 
-entity serparlatch is
+entity serparbuf is
    generic (    nbits           : natural := 19);
    port (       clk             : in std_logic; 		                    -- input clock frequency
                 shift_out       : in std_logic;                             -- push internal data (latched) to output 
@@ -31,9 +31,9 @@ entity serparlatch is
                 clear           : in std_logic;                             -- asynchronous, high active clear
                 serial_in       : in std_logic;                             -- serial input (synchronous on clk, enabled by shift_down)
                 parallel_output : out std_logic_vector(nbits downto 0));    -- parallel output
-end serparlatch;
+end serparbuf;
 
-architecture Behavioral of serparlatch is
+architecture Behavioral of serparbuf is
 
     signal parallel_output_latch : std_logic_vector(nbits downto 0) := (others => '0'); -- this signal acts as a latch
     
