@@ -15,71 +15,28 @@
 
   <!--                                                          -->
 
-  <!-- Copyright (c) 1995-2012 Xilinx, Inc.  All rights reserved. -->
+  <!-- Copyright (c) 1995-2013 Xilinx, Inc.  All rights reserved. -->
 
   <version xmlns="http://www.xilinx.com/XMLSchema">11.1</version>
 
   <sourceproject xmlns="http://www.xilinx.com/XMLSchema" xil_pn:fileType="FILE_XISE" xil_pn:name="irdecoder.xise"/>
 
   <files xmlns="http://www.xilinx.com/XMLSchema">
-    <file xil_pn:fileType="FILE_DIRECTORY" xil_pn:name="_ngo"/>
-    <file xil_pn:fileType="FILE_XMSGS" xil_pn:name="_xmsgs/ngdbuild.xmsgs"/>
-    <file xil_pn:fileType="FILE_XMSGS" xil_pn:name="_xmsgs/xst.xmsgs"/>
     <file xil_pn:fileType="FILE_SYMBOL" xil_pn:name="decoder.sym" xil_pn:origination="imported"/>
-    <file xil_pn:branch="BehavioralSim" xil_pn:fileType="FILE_ISIM_EXE" xil_pn:name="decoder_tb_isim_beh.exe"/>
     <file xil_pn:fileType="FILE_SYMBOL" xil_pn:name="divider.sym" xil_pn:origination="imported"/>
-    <file xil_pn:fileType="FILE_XST_PROJECT" xil_pn:name="divider_tb_beh.prj"/>
-    <file xil_pn:branch="BehavioralSim" xil_pn:fileType="FILE_ISIM_EXE" xil_pn:name="divider_tb_isim_beh.exe"/>
-    <file xil_pn:fileType="FILE_ISIM_MISC" xil_pn:name="divider_tb_isim_beh.wdb"/>
     <file xil_pn:fileType="FILE_LOG" xil_pn:name="fuse.log"/>
     <file xil_pn:fileType="FILE_SYMBOL" xil_pn:name="hex2seg.sym" xil_pn:origination="imported"/>
     <file xil_pn:fileType="FILE_DIRECTORY" xil_pn:name="isim"/>
     <file xil_pn:branch="BehavioralSim" xil_pn:fileType="FILE_CMD" xil_pn:name="isim.cmd"/>
-    <file xil_pn:branch="BehavioralSim" xil_pn:fileType="FILE_LOG" xil_pn:name="isim.log"/>
-    <file xil_pn:branch="Implementation" xil_pn:fileType="FILE_NGDBUILD_LOG" xil_pn:name="toplevel.bld"/>
-    <file xil_pn:branch="Implementation" xil_pn:fileType="FILE_CHK" xil_pn:name="toplevel.chk"/>
-    <file xil_pn:fileType="FILE_CMD_LOG" xil_pn:name="toplevel.cmd_log"/>
-    <file xil_pn:branch="Implementation" xil_pn:fileType="FILE_CXT" xil_pn:name="toplevel.cxt"/>
-    <file xil_pn:branch="Implementation" xil_pn:fileType="FILE_GYD" xil_pn:name="toplevel.gyd"/>
-    <file xil_pn:branch="Implementation" xil_pn:fileType="FILE_JEDEC" xil_pn:name="toplevel.jed"/>
-    <file xil_pn:fileType="FILE_JHD" xil_pn:name="toplevel.jhd"/>
-    <file xil_pn:fileType="FILE_LOG" xil_pn:name="toplevel.log"/>
-    <file xil_pn:branch="Implementation" xil_pn:fileType="FILE_LSO" xil_pn:name="toplevel.lso"/>
-    <file xil_pn:branch="Implementation" xil_pn:fileType="FILE_MFD" xil_pn:name="toplevel.mfd"/>
-    <file xil_pn:branch="Implementation" xil_pn:fileType="FILE_NGA" xil_pn:name="toplevel.nga"/>
-    <file xil_pn:branch="Implementation" xil_pn:fileType="FILE_NGC" xil_pn:name="toplevel.ngc"/>
-    <file xil_pn:branch="Implementation" xil_pn:fileType="FILE_NGD" xil_pn:name="toplevel.ngd"/>
-    <file xil_pn:branch="Implementation" xil_pn:fileType="FILE_NGR" xil_pn:name="toplevel.ngr"/>
-    <file xil_pn:fileType="FILE_PAD_MISC" xil_pn:name="toplevel.pad"/>
-    <file xil_pn:branch="Implementation" xil_pn:fileType="FILE_PNX" xil_pn:name="toplevel.pnx"/>
-    <file xil_pn:branch="Implementation" xil_pn:fileType="FILE_XST_PROJECT" xil_pn:name="toplevel.prj"/>
-    <file xil_pn:fileType="FILE_FITTER_REPORT" xil_pn:name="toplevel.rpt"/>
-    <file xil_pn:branch="Implementation" xil_pn:fileType="FILE_XST_STX" xil_pn:name="toplevel.stx"/>
-    <file xil_pn:branch="Implementation" xil_pn:fileType="FILE_XST_REPORT" xil_pn:name="toplevel.syr"/>
-    <file xil_pn:fileType="FILE_FITTER_REPORT" xil_pn:name="toplevel.tspec"/>
-    <file xil_pn:branch="Implementation" xil_pn:fileType="FILE_VHDL" xil_pn:name="toplevel.vhf"/>
-    <file xil_pn:branch="Implementation" xil_pn:fileType="FILE_VM6" xil_pn:name="toplevel.vm6"/>
-    <file xil_pn:fileType="FILE_FITTER_REPORT" xil_pn:name="toplevel.xml"/>
-    <file xil_pn:branch="Implementation" xil_pn:fileType="FILE_XST" xil_pn:name="toplevel.xst"/>
-    <file xil_pn:fileType="FILE_FITTER_REPORT" xil_pn:name="toplevel_build.xml"/>
-    <file xil_pn:fileType="FILE_DIRECTORY" xil_pn:name="toplevel_html"/>
-    <file xil_pn:fileType="FILE_XRPT" xil_pn:name="toplevel_ngdbuild.xrpt"/>
-    <file xil_pn:fileType="FILE_PAD_EXCEL_REPORT" xil_pn:name="toplevel_pad.csv"/>
-    <file xil_pn:fileType="FILE_HTML" xil_pn:name="toplevel_summary.html"/>
-    <file xil_pn:branch="Implementation" xil_pn:fileType="FILE_XST_PROJECT" xil_pn:name="toplevel_vhdl.prj"/>
-    <file xil_pn:fileType="FILE_XRPT" xil_pn:name="toplevel_xst.xrpt"/>
-    <file xil_pn:fileType="FILE_FITTER_REPORT" xil_pn:name="webtalk_pn.xml"/>
+    <file xil_pn:fileType="FILE_XST_PROJECT" xil_pn:name="outputswitcher_tb_beh.prj"/>
+    <file xil_pn:branch="BehavioralSim" xil_pn:fileType="FILE_ISIM_EXE" xil_pn:name="outputswitcher_tb_isim_beh.exe"/>
+    <file xil_pn:fileType="FILE_ISIM_MISC" xil_pn:name="outputswitcher_tb_isim_beh.wdb"/>
+    <file xil_pn:fileType="FILE_XST_PROJECT" xil_pn:name="outputswitcher_tb_stx_beh.prj"/>
     <file xil_pn:branch="BehavioralSim" xil_pn:fileType="FILE_INI" xil_pn:name="xilinxsim.ini"/>
-    <file xil_pn:fileType="FILE_DIRECTORY" xil_pn:name="xlnx_auto_0_xdb"/>
-    <file xil_pn:fileType="FILE_DIRECTORY" xil_pn:name="xst"/>
   </files>
 
   <transforms xmlns="http://www.xilinx.com/XMLSchema">
-    <transform xil_pn:end_ts="1453466500" xil_pn:name="TRAN_copyInitialToAbstractSimulation" xil_pn:start_ts="1453466500">
-      <status xil_pn:value="SuccessfullyRun"/>
-      <status xil_pn:value="ReadyToRun"/>
-    </transform>
-    <transform xil_pn:end_ts="1453466500" xil_pn:in_ck="-89720066115493704" xil_pn:name="TRAN_copyAbstractToPostAbstractSimulation" xil_pn:start_ts="1453466500">
+    <transform xil_pn:end_ts="1453475146" xil_pn:in_ck="-6545619998640917321" xil_pn:name="TRAN_copyAbstractToPostAbstractSimulation" xil_pn:start_ts="1453475146">
       <status xil_pn:value="SuccessfullyRun"/>
       <status xil_pn:value="ReadyToRun"/>
       <outfile xil_pn:name="decoder.vhd"/>
@@ -89,14 +46,15 @@
       <outfile xil_pn:name="hex2seg.vhd"/>
       <outfile xil_pn:name="hex2seg_tb.vhd"/>
       <outfile xil_pn:name="outputswitcher.vhd"/>
+      <outfile xil_pn:name="outputswitcher_tb.vhd"/>
       <outfile xil_pn:name="serparbuf.vhd"/>
       <outfile xil_pn:name="serparbuf_tb.vhd"/>
     </transform>
-    <transform xil_pn:end_ts="1453467163" xil_pn:in_ck="6038244062278950263" xil_pn:name="TRAN_schematicsToHdlSim" xil_pn:prop_ck="3661637716686053990" xil_pn:start_ts="1453467160">
+    <transform xil_pn:end_ts="1453475257" xil_pn:in_ck="6038244062278950263" xil_pn:name="TRAN_schematicsToHdlSim" xil_pn:prop_ck="5520823932972954105" xil_pn:start_ts="1453475255">
       <status xil_pn:value="SuccessfullyRun"/>
       <status xil_pn:value="ReadyToRun"/>
     </transform>
-    <transform xil_pn:end_ts="1453466502" xil_pn:in_ck="-89720066115493704" xil_pn:name="TRAN_copyPostAbstractToPreSimulation" xil_pn:start_ts="1453466502">
+    <transform xil_pn:end_ts="1453475257" xil_pn:in_ck="-6545619998640917321" xil_pn:name="TRAN_copyPostAbstractToPreSimulation" xil_pn:start_ts="1453475257">
       <status xil_pn:value="SuccessfullyRun"/>
       <status xil_pn:value="ReadyToRun"/>
       <outfile xil_pn:name="decoder.vhd"/>
@@ -106,100 +64,28 @@
       <outfile xil_pn:name="hex2seg.vhd"/>
       <outfile xil_pn:name="hex2seg_tb.vhd"/>
       <outfile xil_pn:name="outputswitcher.vhd"/>
+      <outfile xil_pn:name="outputswitcher_tb.vhd"/>
       <outfile xil_pn:name="serparbuf.vhd"/>
       <outfile xil_pn:name="serparbuf_tb.vhd"/>
     </transform>
-    <transform xil_pn:end_ts="1453467168" xil_pn:in_ck="-89720066115493704" xil_pn:name="TRAN_ISimulateBehavioralModelRunFuse" xil_pn:prop_ck="-8833964654818264358" xil_pn:start_ts="1453467163">
+    <transform xil_pn:end_ts="1453475262" xil_pn:in_ck="-6545619998640917321" xil_pn:name="TRAN_ISimulateBehavioralModelRunFuse" xil_pn:prop_ck="-3727745211250315808" xil_pn:start_ts="1453475257">
       <status xil_pn:value="SuccessfullyRun"/>
       <status xil_pn:value="ReadyToRun"/>
       <status xil_pn:value="OutOfDateForOutputs"/>
       <status xil_pn:value="OutputChanged"/>
-      <outfile xil_pn:name="divider_tb_beh.prj"/>
-      <outfile xil_pn:name="divider_tb_isim_beh.exe"/>
       <outfile xil_pn:name="fuse.log"/>
       <outfile xil_pn:name="isim"/>
-      <outfile xil_pn:name="isim.log"/>
+      <outfile xil_pn:name="outputswitcher_tb_beh.prj"/>
+      <outfile xil_pn:name="outputswitcher_tb_isim_beh.exe"/>
       <outfile xil_pn:name="xilinxsim.ini"/>
     </transform>
-    <transform xil_pn:end_ts="1453467168" xil_pn:in_ck="2448614365513676101" xil_pn:name="TRAN_ISimulateBehavioralModel" xil_pn:prop_ck="8232521529091532391" xil_pn:start_ts="1453467168">
+    <transform xil_pn:end_ts="1453475263" xil_pn:in_ck="4322960387714159614" xil_pn:name="TRAN_ISimulateBehavioralModel" xil_pn:prop_ck="-4234607785588673363" xil_pn:start_ts="1453475262">
       <status xil_pn:value="SuccessfullyRun"/>
       <status xil_pn:value="ReadyToRun"/>
       <status xil_pn:value="OutOfDateForOutputs"/>
       <status xil_pn:value="OutputChanged"/>
-      <outfile xil_pn:name="divider_tb_isim_beh.wdb"/>
       <outfile xil_pn:name="isim.cmd"/>
-      <outfile xil_pn:name="isim.log"/>
-    </transform>
-    <transform xil_pn:end_ts="1453466760" xil_pn:name="TRAN_copyInitialToXSTAbstractSynthesis" xil_pn:start_ts="1453466760">
-      <status xil_pn:value="SuccessfullyRun"/>
-      <status xil_pn:value="ReadyToRun"/>
-    </transform>
-    <transform xil_pn:end_ts="1453466762" xil_pn:in_ck="6038244062278950263" xil_pn:name="TRAN_schematicsToHdl" xil_pn:prop_ck="476059982243473164" xil_pn:start_ts="1453466760">
-      <status xil_pn:value="SuccessfullyRun"/>
-      <status xil_pn:value="ReadyToRun"/>
-      <outfile xil_pn:name="toplevel.vhf"/>
-    </transform>
-    <transform xil_pn:end_ts="1453466772" xil_pn:in_ck="1921259396206116708" xil_pn:name="TRANEXT_xstsynthesize_xbr" xil_pn:prop_ck="-41954884469022167" xil_pn:start_ts="1453466762">
-      <status xil_pn:value="SuccessfullyRun"/>
-      <status xil_pn:value="ReadyToRun"/>
-      <outfile xil_pn:name="_xmsgs/xst.xmsgs"/>
-      <outfile xil_pn:name="toplevel.jhd"/>
-      <outfile xil_pn:name="toplevel.lso"/>
-      <outfile xil_pn:name="toplevel.ngc"/>
-      <outfile xil_pn:name="toplevel.ngr"/>
-      <outfile xil_pn:name="toplevel.prj"/>
-      <outfile xil_pn:name="toplevel.stx"/>
-      <outfile xil_pn:name="toplevel.syr"/>
-      <outfile xil_pn:name="toplevel.xst"/>
-      <outfile xil_pn:name="toplevel_vhdl.prj"/>
-      <outfile xil_pn:name="toplevel_xst.xrpt"/>
-      <outfile xil_pn:name="webtalk_pn.xml"/>
-      <outfile xil_pn:name="xst"/>
-    </transform>
-    <transform xil_pn:end_ts="1453466428" xil_pn:in_ck="5180360667279505590" xil_pn:name="TRAN_compileBCD2" xil_pn:prop_ck="4784894232377633197" xil_pn:start_ts="1453466428">
-      <status xil_pn:value="SuccessfullyRun"/>
-      <status xil_pn:value="ReadyToRun"/>
-    </transform>
-    <transform xil_pn:end_ts="1453466778" xil_pn:in_ck="-8462396126576901529" xil_pn:name="TRAN_ngdbuild" xil_pn:prop_ck="8145602123014828634" xil_pn:start_ts="1453466772">
-      <status xil_pn:value="SuccessfullyRun"/>
-      <status xil_pn:value="ReadyToRun"/>
-      <outfile xil_pn:name="_ngo"/>
-      <outfile xil_pn:name="_xmsgs/ngdbuild.xmsgs"/>
-      <outfile xil_pn:name="toplevel.bld"/>
-      <outfile xil_pn:name="toplevel.ngd"/>
-      <outfile xil_pn:name="toplevel_ngdbuild.xrpt"/>
-    </transform>
-    <transform xil_pn:end_ts="1453466825" xil_pn:in_ck="6038244062278944946" xil_pn:name="TRANEXT_vm6File_xbr" xil_pn:prop_ck="8628317458402107543" xil_pn:start_ts="1453466778">
-      <status xil_pn:value="SuccessfullyRun"/>
-      <status xil_pn:value="WarningsGenerated"/>
-      <status xil_pn:value="ReadyToRun"/>
-      <outfile xil_pn:name="toplevel.chk"/>
-      <outfile xil_pn:name="toplevel.cxt"/>
-      <outfile xil_pn:name="toplevel.gyd"/>
-      <outfile xil_pn:name="toplevel.log"/>
-      <outfile xil_pn:name="toplevel.mfd"/>
-      <outfile xil_pn:name="toplevel.nga"/>
-      <outfile xil_pn:name="toplevel.pad"/>
-      <outfile xil_pn:name="toplevel.pnx"/>
-      <outfile xil_pn:name="toplevel.rpt"/>
-      <outfile xil_pn:name="toplevel.tspec"/>
-      <outfile xil_pn:name="toplevel.vm6"/>
-      <outfile xil_pn:name="toplevel.xml"/>
-      <outfile xil_pn:name="toplevel_build.xml"/>
-      <outfile xil_pn:name="toplevel_html"/>
-      <outfile xil_pn:name="toplevel_pad.csv"/>
-    </transform>
-    <transform xil_pn:end_ts="1453466830" xil_pn:in_ck="6038244062278953810" xil_pn:name="TRANEXT_crtProg_xbr" xil_pn:prop_ck="5245363024343" xil_pn:start_ts="1453466825">
-      <status xil_pn:value="SuccessfullyRun"/>
-      <status xil_pn:value="ReadyToRun"/>
-      <outfile xil_pn:name="toplevel.jed"/>
-    </transform>
-    <transform xil_pn:name="TRAN_timRpt">
-      <status xil_pn:value="AbortedRun"/>
-      <status xil_pn:value="ReadyToRun"/>
-      <status xil_pn:value="OutOfDateForInputs"/>
-      <status xil_pn:value="InputAdded"/>
-      <status xil_pn:value="InputRemoved"/>
+      <outfile xil_pn:name="outputswitcher_tb_isim_beh.wdb"/>
     </transform>
   </transforms>
 
