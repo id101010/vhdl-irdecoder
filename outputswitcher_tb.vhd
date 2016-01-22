@@ -84,7 +84,7 @@ ARCHITECTURE behavior OF outputswitcher_tb IS
    signal dp : std_logic;
 
    -- Clock period definitions
-   constant dclk_period : time := 10 ns;
+   constant dclk_period : time := 1000 ms / 81;
  
 BEGIN
  
@@ -122,32 +122,29 @@ BEGIN
    -- Stimulus process
    stim_proc: process
    begin		
-      -- hold reset state for 100 ns.
-      wait for 100 ns;	
-
       wait for dclk_period*10;
 
       data <= "00001001110100011111"; -- apply valid signal (Signal 1)
       
-      wait for 100 us;
+      wait for dclk_period * 10;
       
       -- configuration 1
       sel_raw       <= '0';
       sel_decoded   <= '0';
 
-      wait for 100 us;
+      wait for dclk_period * 10;
       
       -- configuration 2
       sel_raw       <= '1';
       sel_decoded   <= '0';
       
-      wait for 100 us;
+      wait for dclk_period * 10;
       
       -- configuration 3
       sel_raw       <= '0';
       sel_decoded   <= '1';
       
-      wait for 100 us;
+      wait for dclk_period * 10;
       
       -- configuration 4
       sel_raw       <= '1';
