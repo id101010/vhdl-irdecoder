@@ -13,10 +13,10 @@
 -- You should have received a copy of the GNU General Public License
 -- along with this program.  If not, see <http://www.gnu.org/licenses/>.
 ----------------------------------------------------------------------------------
--- Engineer: 		Aaron Schmocker
--- Create Date:		02:26:55 09.01.2016
--- Module Name:		generic Divider    
--- Project Name: 	irdecoder
+-- Engineer:        Aaron Schmocker
+-- Create Date:     02:26:55 09.01.2016
+-- Module Name:     generic Divider    
+-- Project Name:    irdecoder
 -- Description:     A generic divider
 ----------------------------------------------------------------------------------
 library ieee;

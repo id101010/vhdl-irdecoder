@@ -25,7 +25,7 @@ ARCHITECTURE behavior OF hex2seg_tb IS
    signal clk : std_logic := '0';
    signal hex : std_logic_vector(3 downto 0) := (others => '0');
 
- 	--Outputs
+    --Outputs
    signal seg : std_logic_vector(6 downto 0);
 
    -- Clock period definitions
@@ -33,7 +33,7 @@ ARCHITECTURE behavior OF hex2seg_tb IS
  
 BEGIN
  
-	-- Instantiate the Unit Under Test (UUT)
+    -- Instantiate the Unit Under Test (UUT)
    uut: hex2seg PORT MAP (
           clk => clk,
           hex => hex,
@@ -43,16 +43,16 @@ BEGIN
    -- Clock process definitions
    clk_process :process
    begin
-		clk <= '0';
-		wait for clk_period/2;
-		clk <= '1';
-		wait for clk_period/2;
+        clk <= '0';
+        wait for clk_period/2;
+        clk <= '1';
+        wait for clk_period/2;
    end process;
  
 
    -- Stimulus process
    stim_proc: process
-   begin		
+   begin        
      
       hex <= "0000";
       wait for clk_period*10;

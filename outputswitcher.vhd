@@ -47,8 +47,8 @@ signal decoded_z : unsigned (3 downto 0);
 signal decoded_e : unsigned (3 downto 0);
 begin
     with data select 
-	decoded <=       "00000001" when "00001001110100011111", -- 1:  Bright Down
-					 "00000010" when "00001001110100011110", -- 2:  Bright Up
+    decoded <=       "00000001" when "00001001110100011111", -- 1:  Bright Down
+                     "00000010" when "00001001110100011110", -- 2:  Bright Up
                      "00000011" when "00001001110100001111", -- 3:  Vertical Down
                      "00000100" when "00001001110100001110", -- 4:  Vertical Up
                      "00000101" when "00001001110100101001", -- 5:  Height Down
@@ -56,7 +56,7 @@ begin
                      "00000111" when "00001001110100101101", -- 7:  Convergence Down
                      "00001000" when "00001001110100101100", -- 8:  Convergence Up
                      "00001001" when "00001001110100010001", -- 9:  Tilt left Down
-					 "00010000" when "00001001110100010000", -- 10: Tilt right Down
+                     "00010000" when "00001001110100010000", -- 10: Tilt right Down
                      "00010001" when "00001001110100011001", -- 11: Contrast Down
                      "00010010" when "00001001110100011000", -- 12: Contrast Up
                      "00010011" when "00001001110100001101", -- 13: Horizontal Left
@@ -64,10 +64,10 @@ begin
                      "00010101" when "00001001110100100111", -- 15: With Left
                      "00010110" when "00001001110100100110", -- 16: With Right
                      "00010111" when "00001001110100101011", -- 17: Convergence Left
-					 "00011000" when "00001001110100101010", -- 18: Convergence Right
+                     "00011000" when "00001001110100101010", -- 18: Convergence Right
                      "00011001" when "00001001110100111000", -- 19: Size Down
                      "00100000" when "00001001110100110111", -- 20: Size Up
-					 "11101110" when others; -- output EE-hex to mark error
+                     "11101110" when others; -- output EE-hex to mark error
     decoded_e <= decoded(3 downto 0); --one's digit
     decoded_z <= decoded(7 downto 4); --ten's digit
 

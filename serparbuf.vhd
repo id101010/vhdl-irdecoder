@@ -13,10 +13,10 @@
 -- You should have received a copy of the GNU General Public License
 -- along with this program.  If not, see <http://www.gnu.org/licenses/>.
 ----------------------------------------------------------------------------------
--- Engineer: 		Aaron Schmocker
--- Create Date:		00:01:55 21.01.2016
--- Module Name:		SerParLatch    
--- Project Name: 	irdecoder
+-- Engineer:        Aaron Schmocker
+-- Create Date:     00:01:55 21.01.2016
+-- Module Name:     SerParLatch    
+-- Project Name:    irdecoder
 -- Description:     A serial to parallel shiftregister with latched output
 ----------------------------------------------------------------------------------
 library ieee;
@@ -25,7 +25,7 @@ use ieee.numeric_std.all;
 
 entity serparbuf is
    generic (    nbits           : natural := 19);
-   port (       clk             : in std_logic; 		                    -- input clock frequency
+   port (       clk             : in std_logic;                             -- input clock frequency
                 shift_out       : in std_logic;                             -- push internal data (latched) to output 
                 shift_down      : in std_logic;                             -- shift all internal bits (latched) one bit down, and set the highest bit to serial_in
                 clear           : in std_logic;                             -- asynchronous, high active clear

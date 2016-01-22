@@ -1,8 +1,8 @@
 ----------------------------------------------------------------------------------
--- Engineer: 		Aaron Schmocker
--- Create Date:		01:26:55 10/09/2014
--- Module Name:		generic Divider Testbench   
--- Project Name: 	BFH Miniprojekt
+-- Engineer:        Aaron Schmocker
+-- Create Date:     01:26:55 10/09/2014
+-- Module Name:     generic Divider Testbench   
+-- Project Name:    BFH Miniprojekt
 -- Description:     Testbench to the generic divider.
 -- Licence:
 --
@@ -39,7 +39,7 @@ ARCHITECTURE behavior OF divider_tb IS
    --Inputs
    signal fclk : std_logic := '0';
 
- 	--Outputs
+    --Outputs
    signal fclkn : std_logic;
 
    -- Clock period definitions
@@ -47,7 +47,7 @@ ARCHITECTURE behavior OF divider_tb IS
  
 BEGIN
  
-	-- Instantiate the Unit Under Test (UUT)
+    -- Instantiate the Unit Under Test (UUT)
    uut: divider PORT MAP (
           fclk => fclk,
           fclkn => fclkn
@@ -56,15 +56,15 @@ BEGIN
    -- Clock process definitions
    fclk_process :process
    begin
-		fclk <= '0';
-		wait for fclk_period/2;
-		fclk <= '1';
-		wait for fclk_period/2;
+        fclk <= '0';
+        wait for fclk_period/2;
+        fclk <= '1';
+        wait for fclk_period/2;
    end process;
 
    -- Stimulus process
    stim_proc: process
-   begin		
+   begin        
       wait;
    end process;
 

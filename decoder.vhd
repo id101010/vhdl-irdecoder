@@ -154,9 +154,9 @@ begin
         frame_detect <= '0'; --no frame detected per default
         data_out <= '0'; -- 'zero' detected per default
         
-		if(curr_detected = ERROR) then -- invalid time received?
+        if(curr_detected = ERROR) then -- invalid time received?
             state_next <= S_IDLE; -- switch back to inital/idle state
-		else -- valid time received
+        else -- valid time received
             case state_reg is -- switch on current state
                 when S_IDLE => -- currently in idle state
                     if(curr_detected = START) then -- 'start' signal detected

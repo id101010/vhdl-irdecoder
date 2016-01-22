@@ -126,9 +126,9 @@ begin
         
         --temporiaries
         variable data : std_logic_vector(19 downto 0);
-    begin	
+    begin   
         -- hold neutral state for 100 ns.
-        wait for 100 ns;	
+        wait for 100 ns;    
         data_in <= '1';
 
         reset <= '1'; -- push reset
