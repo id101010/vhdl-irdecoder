@@ -15,6 +15,7 @@ ARCHITECTURE behavior OF hex2seg_tb IS
     COMPONENT hex2seg
     PORT(
          clk : IN  std_logic;
+         en  : in std_logic;
          hex : IN  std_logic_vector(3 downto 0);
          seg : OUT  std_logic_vector(6 downto 0)
         );
@@ -23,6 +24,7 @@ ARCHITECTURE behavior OF hex2seg_tb IS
 
    --Inputs
    signal clk : std_logic := '0';
+   signal en: std_logic := '0';
    signal hex : std_logic_vector(3 downto 0) := (others => '0');
 
     --Outputs
@@ -36,6 +38,7 @@ BEGIN
     -- Instantiate the Unit Under Test (UUT)
    uut: hex2seg PORT MAP (
           clk => clk,
+          en => en,
           hex => hex,
           seg => seg
         );
@@ -53,7 +56,13 @@ BEGIN
    -- Stimulus process
    stim_proc: process
    begin        
-     
+      --Test if nothing happens if enabled is on '0'
+      en <= '0';
+      hex <= "0001";
+      wait for clk_period*10;
+      
+      -- Test decoding of hex numbers 0-F
+      en <= '1';
       hex <= "0000";
       wait for clk_period*10;
       hex <= "0001";
